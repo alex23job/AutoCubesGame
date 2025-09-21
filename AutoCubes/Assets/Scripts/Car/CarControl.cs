@@ -23,6 +23,9 @@ public class CarControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Vector3 pos = transform.position;
+        pos.y -= carInfo.OffsetY;
+        transform.position = pos;
         spawnPosition = transform.position;
     }
 
@@ -72,6 +75,8 @@ public class CarControl : MonoBehaviour
     public void MoveCar(bool isForward, Vector3 tg)
     {
         this.isForward = isForward;
+        tg.x -= carInfo.OffsetX;
+        tg.y -= carInfo.OffsetY;
         target = tg;
         isMove = true;
         if (isForward)

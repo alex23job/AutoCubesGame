@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 554067145183921380}
   - component: {fileID: 2372313946757365791}
   - component: {fileID: 2923080084839640075}
+  - component: {fileID: 4620976281323230715}
   m_Layer: 0
   m_Name: WheelBL4
   m_TagString: Untagged
@@ -87,6 +88,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4620976281323230715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294620917480144794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3058641782995261979
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +111,8 @@ GameObject:
   - component: {fileID: 3325816552196566767}
   - component: {fileID: 4382668380606124392}
   - component: {fileID: 7569954244802271135}
+  - component: {fileID: 3935234925268881493}
+  - component: {fileID: 4945777420632286264}
   m_Layer: 0
   m_Name: WallBox4
   m_TagString: Untagged
@@ -113,12 +128,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3058641782995261979}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.84999996, z: 0.95}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.016, y: 0.00854, z: 0.00958}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6652736328801222267}
+  m_Father: {fileID: 3010903368286952883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4382668380606124392
 MeshFilter:
@@ -173,6 +188,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &3935234925268881493
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058641782995261979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7c1a417f6505b9a48a43da153b78bda1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4945777420632286264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3058641782995261979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12d635a57662b5469aa01d08ba6b456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3817112494268773596
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +233,7 @@ GameObject:
   - component: {fileID: 7674834285955221503}
   - component: {fileID: 4611719321386593281}
   - component: {fileID: 729114696040865072}
+  - component: {fileID: 5955840156806661856}
   m_Layer: 0
   m_Name: WheelFR4
   m_TagString: Untagged
@@ -260,6 +310,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5955840156806661856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817112494268773596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4243030901511067736
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +333,7 @@ GameObject:
   - component: {fileID: 8101530277767574839}
   - component: {fileID: 1121991672570385545}
   - component: {fileID: 5745088194477531723}
+  - component: {fileID: 1829710372804233273}
   m_Layer: 0
   m_Name: WheelFL4
   m_TagString: Untagged
@@ -347,6 +410,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1829710372804233273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243030901511067736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6517511807815032167
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +452,8 @@ Transform:
   m_LocalPosition: {x: 1.6000004, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3325816552196566767}
   m_Father: {fileID: 6652736328801222267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8910521723079746555
@@ -445,6 +521,7 @@ GameObject:
   - component: {fileID: 3838699211588152527}
   - component: {fileID: 2809411303423065183}
   - component: {fileID: 848246578955450535}
+  - component: {fileID: 9172747939456931371}
   m_Layer: 0
   m_Name: WheelBR4
   m_TagString: Untagged
@@ -521,6 +598,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9172747939456931371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591293201453528118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6868667814362793686
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +733,6 @@ Transform:
   m_Children:
   - {fileID: 3010903368286952883}
   - {fileID: 3080212499909417563}
-  - {fileID: 3325816552196566767}
   - {fileID: 554067145183921380}
   - {fileID: 3838699211588152527}
   - {fileID: 8101530277767574839}
@@ -676,3 +764,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carID: 4
+  offsetX: 4
+  offsetY: 0.4

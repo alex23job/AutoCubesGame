@@ -17,7 +17,7 @@ public class Wheel : MonoBehaviour
         if (isRotate)
         {
             Vector3 rot = transform.rotation.eulerAngles;
-            rot.z += Time.deltaTime * speedRotate * 2;
+            rot.z += Time.deltaTime * speedRotate * 3;
             transform.rotation = Quaternion.Euler(rot);
         }
     }

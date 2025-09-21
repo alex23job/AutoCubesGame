@@ -21,7 +21,7 @@ public class SpawnCars : MonoBehaviour
     public GameObject SpawnCar()
     {
         if (transform.position.x < 0) isLeft = false; else isLeft = true;
-        GameObject car = Instantiate(carPrefabs[0], transform.position, Quaternion.identity);
+        GameObject car = Instantiate(carPrefabs[1], transform.position, Quaternion.identity);
         Vector3 target = transform.position;
         if (isLeft) { target.x -= 22f; }
         else { target.x += 27f; }

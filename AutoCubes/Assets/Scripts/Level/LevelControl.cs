@@ -5,8 +5,11 @@ using UnityEngine;
 public class LevelControl : MonoBehaviour
 {
     [SerializeField] private SpawnCars[] spawnCars;
+    [SerializeField] private SpawnOrders spawnOrders;
+    [SerializeField] private Transform firstOrderPoint;
 
     private List<GameObject> cars = new List<GameObject>();
+    private List<GameObject> orders = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +18,8 @@ public class LevelControl : MonoBehaviour
         SpawnCar(1);
         SpawnCar(2);
         SpawnCar(3);
-        Invoke("CarsToWay", 10f);
+        Invoke("CarsToWay", 30f);
+        SpawnOrder();
     }
 
     // Update is called once per frame
@@ -40,5 +44,10 @@ public class LevelControl : MonoBehaviour
                 carControl.CarToWay();
             }
         }
+    }
+
+    private void SpawnOrder()
+    {
+        spawnOrders.SpawnOrder(firstOrderPoint.position);
     }
 }

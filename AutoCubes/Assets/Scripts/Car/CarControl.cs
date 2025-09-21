@@ -52,9 +52,9 @@ public class CarControl : MonoBehaviour
                 delta = transform.position - spawnPosition;
                 if (delta.magnitude > 2f)
                 {
-                    wallBox.WallOpen(true);
-                    TurnWheels(0);
+                    wallBox.WallOpen(true);                    
                 }
+                TurnWheels(0);
             }
         }
 
@@ -69,14 +69,17 @@ public class CarControl : MonoBehaviour
 
     private void MoveCarWrapper()
     {
-        MoveCar(isForward, spawnPosition);
+        MoveCar(isForward, spawnPosition, false);
     }
 
-    public void MoveCar(bool isForward, Vector3 tg)
+    public void MoveCar(bool isForward, Vector3 tg, bool isTargetCorrect = true)
     {
         this.isForward = isForward;
-        tg.x -= carInfo.OffsetX;
-        tg.y -= carInfo.OffsetY;
+        if ( isTargetCorrect)
+        {
+            tg.x -= carInfo.OffsetX;
+            tg.y -= carInfo.OffsetY;
+        }
         target = tg;
         isMove = true;
         if (isForward)

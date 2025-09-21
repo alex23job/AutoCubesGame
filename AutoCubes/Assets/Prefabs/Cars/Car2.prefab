@@ -28,12 +28,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 393582343904435235}
   - {fileID: 2994308030118193563}
-  - {fileID: 1391826051149485791}
   - {fileID: 1504399579293277002}
   - {fileID: 2585197796551144117}
   - {fileID: 8996116545771734113}
@@ -65,6 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carID: 2
+  offsetX: 2
+  offsetY: 0
 --- !u!1 &3595601884123796399
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +77,7 @@ GameObject:
   - component: {fileID: 8996116545771734113}
   - component: {fileID: 4358675094993146412}
   - component: {fileID: 7028812234616853792}
+  - component: {fileID: 4745945421778369945}
   m_Layer: 0
   m_Name: WheelFL2
   m_TagString: Untagged
@@ -152,6 +154,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4745945421778369945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595601884123796399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3653158713073933125
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +196,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100.00003, z: 100.00003}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1391826051149485791}
   m_Father: {fileID: 3713981864597464408}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &5898857639135409545
@@ -250,6 +265,7 @@ GameObject:
   - component: {fileID: 1504399579293277002}
   - component: {fileID: 5314310162864429240}
   - component: {fileID: 6530810518726202885}
+  - component: {fileID: 532797056440563168}
   m_Layer: 0
   m_Name: WheelBL2
   m_TagString: Untagged
@@ -326,6 +342,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &532797056440563168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022929004914971420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6211544120753819269
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +455,8 @@ GameObject:
   - component: {fileID: 1391826051149485791}
   - component: {fileID: 7806044301279226457}
   - component: {fileID: 1973476582732783459}
+  - component: {fileID: 741488896819419016}
+  - component: {fileID: 329915057984843880}
   m_Layer: 0
   m_Name: WallBox2
   m_TagString: Untagged
@@ -443,11 +473,11 @@ Transform:
   m_GameObject: {fileID: 6826514455170129915}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.10000038, y: 0.84999996, z: 0.9500002}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -0.001000004, y: 0.0085, z: 0.0095}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3713981864597464408}
+  m_Father: {fileID: 393582343904435235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7806044301279226457
 MeshFilter:
@@ -502,6 +532,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &741488896819419016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826514455170129915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12d635a57662b5469aa01d08ba6b456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &329915057984843880
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826514455170129915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac726e9e50519b84cb21b42855dee0aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6971577359569034643
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +577,7 @@ GameObject:
   - component: {fileID: 2585197796551144117}
   - component: {fileID: 1227254483674573508}
   - component: {fileID: 8939675071171270193}
+  - component: {fileID: 1340292418051292197}
   m_Layer: 0
   m_Name: WheelBR2
   m_TagString: Untagged
@@ -589,6 +654,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1340292418051292197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971577359569034643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7032201804699038116
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +677,7 @@ GameObject:
   - component: {fileID: 5051233235595079915}
   - component: {fileID: 2861259301314631215}
   - component: {fileID: 4871141814158817499}
+  - component: {fileID: 1431361488706099322}
   m_Layer: 0
   m_Name: WheelFR2
   m_TagString: Untagged
@@ -676,3 +754,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1431361488706099322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7032201804699038116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -597,7 +597,6 @@ Transform:
   - {fileID: 6429043480436957923}
   - {fileID: 3576251751176419845}
   - {fileID: 1739181259381747101}
-  - {fileID: 9157522396637395101}
   - {fileID: 80954615}
   - {fileID: 6665884194490512709}
   - {fileID: 2300094089224663259}
@@ -605,6 +604,7 @@ Transform:
   - {fileID: 1259593535111047590}
   - {fileID: 7887221495030890301}
   - {fileID: 3673709619066359537}
+  - {fileID: 9157522396637395101}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &762599249
@@ -706,6 +706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderPrefabs:
+  - {fileID: 402005983308726363, guid: 65b64cffe6f77d64a947a4397bd5c9c1, type: 3}
+  - {fileID: 8278576337422234215, guid: 17fc8cc5f974b264b9247f96bac2f1cc, type: 3}
   - {fileID: 7709221734983240820, guid: a08283067fe49b843b8e466b36918d4d, type: 3}
 --- !u!4 &790282195
 Transform:
@@ -2418,6 +2420,10 @@ PrefabInstance:
     - target: {fileID: 7709221734983240820, guid: a08283067fe49b843b8e466b36918d4d, type: 3}
       propertyPath: m_Name
       value: OrderAngle11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709221734983240820, guid: a08283067fe49b843b8e466b36918d4d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

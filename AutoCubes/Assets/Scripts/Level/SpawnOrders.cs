@@ -19,7 +19,7 @@ public class SpawnOrders : MonoBehaviour
     public GameObject SpawnOrder(Vector3 target)
     {
         int num = Random.Range(0, orderPrefabs.Length);
-        GameObject order = Instantiate(orderPrefabs[0], transform.position, Quaternion.identity);
+        GameObject order = Instantiate(orderPrefabs[num], transform.position, Quaternion.identity);
         order.GetComponent<Order>().SetTarget(target);
         return order;
     }

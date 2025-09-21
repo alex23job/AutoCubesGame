@@ -19,7 +19,7 @@ public class LevelControl : MonoBehaviour
         SpawnCar(2);
         SpawnCar(3);
         Invoke("CarsToWay", 30f);
-        SpawnOrder();
+        for (int i = 0; i < 7; i++) SpawnOrder();
     }
 
     // Update is called once per frame
@@ -48,6 +48,26 @@ public class LevelControl : MonoBehaviour
 
     private void SpawnOrder()
     {
-        spawnOrders.SpawnOrder(firstOrderPoint.position);
+        Vector3 pos = firstOrderPoint.position;
+        float offset = MoveOrders();
+        pos.x -= offset;
+        orders.Add(spawnOrders.SpawnOrder(pos));
+    }
+
+    private float MoveOrders()
+    {
+        int i;
+        Vector3 nextPos = firstOrderPoint.position;
+        Vector3 delta;
+        for (i = 0; i < orders.Count; i++) 
+        {
+            delta = nextPos - orders[i].transform.position;
+            if (delta.magnitude > 0.5f)
+            {
+                orders[i].GetComponent<Order>().SetTarget(nextPos);
+            }
+            nextPos.x -= 3.65f;
+        }
+        return 3.65f * i;
     }
 }

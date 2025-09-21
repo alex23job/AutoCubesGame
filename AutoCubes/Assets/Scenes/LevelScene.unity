@@ -566,7 +566,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carPrefabs:
   - {fileID: 99961672522115147, guid: ba119211236fd3b4b99f17ef117ef3d9, type: 3}
+  - {fileID: 7223039782725255920, guid: 44e1c59737caf6c41bee7e0ad2defc92, type: 3}
   - {fileID: 4939401303218982219, guid: abd3d8e4be226b84783a52f8eb71ad5c, type: 3}
+  - {fileID: 4500399349774475855, guid: a305fe3dd77cc4b4d9e20f5fade1ba7e, type: 3}
+  - {fileID: 4524442954952893577, guid: e5d7330338116c346a2dd7a1bd3756fb, type: 3}
+  - {fileID: 6629369206600722246, guid: 7eedb300ffbd34342b9246ab132d6147, type: 3}
 --- !u!4 &762599251
 Transform:
   m_ObjectHideFlags: 0
@@ -887,7 +891,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carPrefabs:
   - {fileID: 99961672522115147, guid: ba119211236fd3b4b99f17ef117ef3d9, type: 3}
+  - {fileID: 7223039782725255920, guid: 44e1c59737caf6c41bee7e0ad2defc92, type: 3}
   - {fileID: 4939401303218982219, guid: abd3d8e4be226b84783a52f8eb71ad5c, type: 3}
+  - {fileID: 4500399349774475855, guid: a305fe3dd77cc4b4d9e20f5fade1ba7e, type: 3}
+  - {fileID: 4524442954952893577, guid: e5d7330338116c346a2dd7a1bd3756fb, type: 3}
+  - {fileID: 6629369206600722246, guid: 7eedb300ffbd34342b9246ab132d6147, type: 3}
 --- !u!4 &1388150451
 Transform:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
@@ -52,7 +53,15 @@ public class BoxTrigger : MonoBehaviour
 
     private void PrintPole()
     {
-        print($"pole=<{pole[0]} {pole[1]} {pole[2]} {pole[3]} {pole[4]} {pole[5]} {pole[6]} {pole[7]} {pole[8]} {pole[9]} {pole[10]} {pole[11]} {pole[12]} {pole[13]} {pole[14]} {pole[15]} {pole[16]} {pole[17]} {pole[18]} {pole[19]}>");
+        StringBuilder sb = new StringBuilder($"pole=<");
+        for (int i = 0;i < row * col;i++)
+        {
+            if (i == 0) sb.Append($"{pole[i]}");
+            else sb.Append($" {pole[i]}");
+        }
+        sb.Append(">");
+        //print($"pole=<{pole[0]} {pole[1]} {pole[2]} {pole[3]} {pole[4]} {pole[5]} {pole[6]} {pole[7]} {pole[8]} {pole[9]} {pole[10]} {pole[11]} {pole[12]} {pole[13]} {pole[14]} {pole[15]} {pole[16]} {pole[17]} {pole[18]} {pole[19]}>");
+        print(sb.ToString());
     }
 
     private bool CheckOccupied(int x, int y)

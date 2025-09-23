@@ -66,6 +66,8 @@ MonoBehaviour:
   carID: 2
   offsetX: 2
   offsetY: 0
+  priceMult: 3
+  termo: 1
 --- !u!1 &3595601884123796399
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +292,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3654c5536bb2a64396deab826664924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  row: 0
+  col: 0
+  numsOccupiedCells: 
+  offsetX: 0
+  offsetY: 0
 --- !u!54 &3036504679450662495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -481,7 +488,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3548921146170799045, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
+  - {fileID: 2100000, guid: 97bdedc5f0dcc2b49bb68d7b3415e68a, type: 2}
   - {fileID: -4018286686147086024, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   - {fileID: 3392243222815625112, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   - {fileID: -5708123466369436382, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}

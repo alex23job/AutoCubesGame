@@ -66,6 +66,8 @@ MonoBehaviour:
   carID: 1
   offsetX: 0
   offsetY: 0
+  priceMult: 2
+  termo: 0
 --- !u!1 &1459987707954695401
 GameObject:
   m_ObjectHideFlags: 0

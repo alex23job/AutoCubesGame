@@ -129,6 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3654c5536bb2a64396deab826664924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  row: 0
+  col: 0
+  numsOccupiedCells: 
+  offsetX: 0
+  offsetY: 0
 --- !u!54 &8058877584616022776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -429,6 +434,8 @@ MonoBehaviour:
   carID: 7
   offsetX: 3
   offsetY: 0.61
+  priceMult: 5
+  termo: 1
 --- !u!1 &6643103097818392173
 GameObject:
   m_ObjectHideFlags: 0

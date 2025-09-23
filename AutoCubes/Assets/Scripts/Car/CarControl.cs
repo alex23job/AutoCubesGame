@@ -134,4 +134,10 @@ public class CarControl : MonoBehaviour
     {
         wallBox.WallOpen(isOpen);
     }
+
+    public int GetBoxPercent()
+    {
+        BoxTrigger boxTrigger = gameObject.GetComponentInChildren<BoxTrigger>();
+        return boxTrigger.GetFullPercent();
+    }
 }

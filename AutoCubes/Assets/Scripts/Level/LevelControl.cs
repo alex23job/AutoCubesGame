@@ -5,8 +5,10 @@ using UnityEngine;
 public class LevelControl : MonoBehaviour
 {
     [SerializeField] private SpawnCars[] spawnCars;
+    [SerializeField] private GameObject[] clocks;
     [SerializeField] private SpawnOrders spawnOrders;
     [SerializeField] private Transform firstOrderPoint;
+    [SerializeField] private int delayCarToWay = 150;
 
     private List<GameObject> cars = new List<GameObject>();
     private List<GameObject> orders = new List<GameObject>();
@@ -16,9 +18,15 @@ public class LevelControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 0; i < spawnCars.Length; i++)
+        int i;
+        for (i = 0; i < spawnCars.Length; i++)
         {
             spawnCars[i].SetLevelControl(this, i);
+        }
+        for (i = 0; i < clocks.Length; i++)
+        {
+            clocks[i].GetComponent<ClockControl>().SetNumPoint(i);
+            clocks[i].SetActive(false);
         }
         //foreach(SpawnCars spawnCar in spawnCars) 
         SpawnCar(0);
@@ -33,6 +41,22 @@ public class LevelControl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CarGO(int numSpawnPoint)
+    {
+        foreach(GameObject car in cars)
+        {
+            CarControl carControl = car.GetComponent<CarControl>();
+            if ((carControl != null) && (carControl.NumSpawnPoint == numSpawnPoint))
+            {
+                carControl.CarToWay();
+                clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
+                clocks[numSpawnPoint].SetActive(false);
+                nextSpawnCarPoint = carControl.NumSpawnPoint;
+                Invoke("SpawnCarWrapper", 4f);
+            }
+        }
     }
 
     private void SpawnCarWrapper()
@@ -68,14 +92,25 @@ public class LevelControl : MonoBehaviour
 
     public void PackingOrderToCar(GameObject car, GameObject order, bool isFull)
     {
-        if (isFull)
+        CarControl carControl = car.GetComponent<CarControl>();
+        if (carControl != null)
         {
-            CarControl carControl = car.GetComponent<CarControl>();
-            carControl.CarToWay();
-            nextSpawnCarPoint = carControl.NumSpawnPoint;
-            Invoke("SpawnCarWrapper", 4f);
-            //if (carControl.NumSpawnPoint != -1) SpawnCar(carControl.NumSpawnPoint);
-            //if (carControl.NumSpawnPoint != -1) Invoke(() => SpawnCar(carControl.NumSpawnPoint), 2f);
+            if (isFull)
+            {
+                carControl.CarToWay();
+                nextSpawnCarPoint = carControl.NumSpawnPoint;
+                Invoke("SpawnCarWrapper", 4f);
+                clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
+                clocks[carControl.NumSpawnPoint].SetActive(false);
+            }
+            else
+            {
+                if (carControl.GetBoxPercent() > 50)
+                {
+                    clocks[carControl.NumSpawnPoint].SetActive(true);
+                    clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StartTimer(delayCarToWay);
+                }
+            }
         }
         SpawnOrder();
     }

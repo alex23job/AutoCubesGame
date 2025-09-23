@@ -220,6 +220,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80954614}
   m_Mesh: {fileID: -5052055758296693842, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
+--- !u!1 &110448125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+  m_PrefabInstance: {fileID: 660149011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &271304965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+  m_PrefabInstance: {fileID: 826676175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286325665 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7995292915036956724, guid: abd3d8e4be226b84783a52f8eb71ad5c, type: 3}
@@ -615,6 +625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 775954044048441102, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+      propertyPath: levelControl
+      value: 
+      objectReference: {fileID: 809242190}
     - target: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
       propertyPath: m_Name
       value: Clock4
@@ -827,8 +841,14 @@ MonoBehaviour:
   - {fileID: 1388150450}
   - {fileID: 1894289128}
   - {fileID: 849720871}
+  clocks:
+  - {fileID: 1981072510}
+  - {fileID: 271304965}
+  - {fileID: 869088924}
+  - {fileID: 110448125}
   spawnOrders: {fileID: 790282194}
   firstOrderPoint: {fileID: 1296163419}
+  delayCarToWay: 150
 --- !u!4 &809242191
 Transform:
   m_ObjectHideFlags: 0
@@ -852,6 +872,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 775954044048441102, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+      propertyPath: levelControl
+      value: 
+      objectReference: {fileID: 809242190}
     - target: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
       propertyPath: m_Name
       value: Clock2
@@ -1002,6 +1026,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &869088924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+  m_PrefabInstance: {fileID: 8818404551109041424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &945682179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6643103097818392173, guid: abd3d8e4be226b84783a52f8eb71ad5c, type: 3}
@@ -1027,6 +1056,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 775954044048441102, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+      propertyPath: levelControl
+      value: 
+      objectReference: {fileID: 809242190}
     - target: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
       propertyPath: m_Name
       value: Clock1
@@ -1762,6 +1795,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6108a138ea30b2e40b1b9fa8062a0e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1981072510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+  m_PrefabInstance: {fileID: 946954829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2022257889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,6 +3800,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 775954044048441102, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
+      propertyPath: levelControl
+      value: 
+      objectReference: {fileID: 809242190}
     - target: {fileID: 2292566594404450100, guid: ebb68ba648f3fb6428aeaa371257afd3, type: 3}
       propertyPath: m_Name
       value: Clock3

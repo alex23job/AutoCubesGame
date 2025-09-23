@@ -159,6 +159,17 @@ public class BoxTrigger : MonoBehaviour
         PrintPole();
     }
 
+    public int GetFullPercent()
+    {
+        int i, count = 0, total = 0;
+        for (i = 0; i < pole.Length; i++)
+        {
+            if (pole[i] == 1) count++;
+            if (pole[i] != -1) total++;
+        }
+        return (count * 100) / total;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("order"))

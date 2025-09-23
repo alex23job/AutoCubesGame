@@ -802,6 +802,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3654c5536bb2a64396deab826664924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  row: 4
+  col: 5
+  numsOccupiedCells: 
+  offsetX: 0.0145
+  offsetY: 0.019
 --- !u!54 &1839000698307225485
 Rigidbody:
   m_ObjectHideFlags: 0

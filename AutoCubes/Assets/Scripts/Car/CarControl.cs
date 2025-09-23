@@ -11,6 +11,10 @@ public class CarControl : MonoBehaviour
     private Vector3 spawnPosition;
     private bool isMove = false;
     private bool isForward = false;
+    private LevelControl levelControl;
+    private int numSpawnPoint = -1;
+
+    public int NumSpawnPoint {  get { return numSpawnPoint; } }
 
     private void Awake()
     {
@@ -52,12 +56,25 @@ public class CarControl : MonoBehaviour
                 delta = transform.position - spawnPosition;
                 if (delta.magnitude > 2f)
                 {
-                    wallBox.WallOpen(true);                    
+                    wallBox.WallOpen(true);
+                    BoxTrigger boxTrigger = gameObject.GetComponentInChildren<BoxTrigger>();
+                    if (boxTrigger != null) boxTrigger.SetBeginAndEndPos();
                 }
                 TurnWheels(0);
             }
         }
 
+    }
+
+    public void SetLevelControl(LevelControl lc, int numPoint)
+    {
+        levelControl = lc;
+        numSpawnPoint = numPoint;
+    }
+
+    public void PackingOrder(GameObject order, bool isFull)
+    {
+        levelControl.PackingOrderToCar(gameObject, order, isFull);
     }
 
     public void CarToWay()
@@ -70,6 +87,7 @@ public class CarControl : MonoBehaviour
     private void MoveCarWrapper()
     {
         MoveCar(isForward, spawnPosition, false);
+        Destroy(gameObject, 15f);
     }
 
     public void MoveCar(bool isForward, Vector3 tg, bool isTargetCorrect = true)

@@ -14,12 +14,17 @@ public class LevelControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        for (int i = 0; i < spawnCars.Length; i++)
+        {
+            spawnCars[i].SetLevelControl(this, i);
+        }
+        //foreach(SpawnCars spawnCar in spawnCars) 
         SpawnCar(0);
-        SpawnCar(1);
+        /*SpawnCar(1);
         SpawnCar(2);
         SpawnCar(3);
-        Invoke("CarsToWay", 30f);
-        for (int i = 0; i < 7; i++) SpawnOrder();
+        Invoke("CarsToWay", 30f);*/
+        for (int j = 0; j < 7; j++) SpawnOrder();
     }
 
     // Update is called once per frame
@@ -54,9 +59,28 @@ public class LevelControl : MonoBehaviour
         orders.Add(spawnOrders.SpawnOrder(pos));
     }
 
+    public void PackingOrderToCar(GameObject car, GameObject order, bool isFull)
+    {
+        if (isFull)
+        {
+            CarControl carControl = car.GetComponent<CarControl>();
+            carControl.CarToWay();
+            if (carControl.NumSpawnPoint != -1) SpawnCar(carControl.NumSpawnPoint);
+        }
+        SpawnOrder();
+    }
+
     private float MoveOrders()
     {
         int i;
+        for (i = 0; i < orders.Count; i++)
+        {
+            if (orders[i].GetComponent<Order>().IsPacking)
+            {
+                orders.RemoveAt(i);
+                break;
+            }
+        }
         Vector3 nextPos = firstOrderPoint.position;
         Vector3 delta;
         for (i = 0; i < orders.Count; i++) 

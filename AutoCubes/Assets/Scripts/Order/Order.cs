@@ -18,6 +18,8 @@ public class Order : MonoBehaviour
     private BoxTrigger boxTrigger = null;
     private bool isPacking = false;
 
+    public bool IsPacking { get { return isPacking; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +31,7 @@ public class Order : MonoBehaviour
     {
         if (isMovement)
         {
+            if (isPacking) print($"isMovement={isMovement}");
             Vector3 delta = transform.position - target;
             if (delta.magnitude > 0.2f)
             {
@@ -102,20 +105,22 @@ public class Order : MonoBehaviour
             {
                 shemaOrder.Rotate90();
                 transform.Rotate(0, 0, 90, Space.World);
-
+                //return;
                 /*Vector3 rot = transform.rotation.eulerAngles;
                 rot.z += 90f;rot.z = Mathf.RoundToInt(rot.z) % 360;
                 transform.rotation = Quaternion.Euler(rot);*/
             }
+            //print($"OnMouseUp   isMovement={isMovement}");
             if (isMove)
             {
                 if (boxTrigger != null && boxTrigger.TestPacking(gameObject))
                 {
-
+                    isPacking = true;isMovement = false;
                 }
                 else
                 {
-                    transform.position = startPos;
+                    print($"OnMouseUp   isPacking={isPacking}");
+                    if (isPacking == false) transform.position = startPos;
                 }
                 isMove = false;
                 boxTrigger = null;

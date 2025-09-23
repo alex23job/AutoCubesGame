@@ -11,6 +11,8 @@ public class LevelControl : MonoBehaviour
     private List<GameObject> cars = new List<GameObject>();
     private List<GameObject> orders = new List<GameObject>();
 
+    private int nextSpawnCarPoint = -1;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +33,11 @@ public class LevelControl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void SpawnCarWrapper()
+    {
+        if (nextSpawnCarPoint >= 0 && nextSpawnCarPoint < spawnCars.Length) SpawnCar(nextSpawnCarPoint);
     }
 
     private void SpawnCar(int numSpawnPoint)
@@ -65,7 +72,10 @@ public class LevelControl : MonoBehaviour
         {
             CarControl carControl = car.GetComponent<CarControl>();
             carControl.CarToWay();
-            if (carControl.NumSpawnPoint != -1) SpawnCar(carControl.NumSpawnPoint);
+            nextSpawnCarPoint = carControl.NumSpawnPoint;
+            Invoke("SpawnCarWrapper", 4f);
+            //if (carControl.NumSpawnPoint != -1) SpawnCar(carControl.NumSpawnPoint);
+            //if (carControl.NumSpawnPoint != -1) Invoke(() => SpawnCar(carControl.NumSpawnPoint), 2f);
         }
         SpawnOrder();
     }
@@ -78,11 +88,13 @@ public class LevelControl : MonoBehaviour
             if (orders[i].GetComponent<Order>().IsPacking)
             {
                 orders.RemoveAt(i);
+                print($"MoveOrders count={orders.Count} remove i={i}");
                 break;
             }
         }
         Vector3 nextPos = firstOrderPoint.position;
         Vector3 delta;
+        if (orders.Count >= 7) print($"MoveOrders count={orders.Count} <{orders[0]}> <{orders[1]}> <{orders[2]}> <{orders[3]}> <{orders[4]}> <{orders[5]}> <{orders[6]}>");
         for (i = 0; i < orders.Count; i++) 
         {
             delta = nextPos - orders[i].transform.position;

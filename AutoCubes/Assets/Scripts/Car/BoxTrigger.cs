@@ -32,6 +32,7 @@ public class BoxTrigger : MonoBehaviour
         pos00.x += 100 * offsetX + 0.7f;pos00.y += 100 * offsetY;
         posEND = pos00;
         posEND.x -= 0.8f * col;posEND.y -= 0.8f * row;
+        //pos00.x += 0.3f; pos00.y += 0.3f;
     }
 
     private void CreatePole()
@@ -80,15 +81,17 @@ public class BoxTrigger : MonoBehaviour
 
     public bool TestPacking(GameObject go)
     {
-        Vector3 goPos = go.transform.position, delta;
-        goPos.x -= 0.4f; goPos.y += 0.4f;
+        Vector3 goPos = go.transform.position, delta;        
         print($"Test in box => pos00=<{pos00}> goPos=<{goPos}> posEND=<{posEND}>");
-        if (((goPos.x < pos00.x) && (goPos.x > posEND.x)) && ((goPos.y < pos00.y) && (goPos.y > posEND.y)))
+        if (((goPos.x < pos00.x + 0.5f) && (goPos.x > posEND.x)) && ((goPos.y < pos00.y + 0.7f) && (goPos.y > posEND.y)))
         {
-            
+            //goPos.x -= 0.4f; goPos.y += 0.4f;
+            goPos.x -= 0.2f; goPos.y += 0.2f;
             delta = pos00 - goPos;
-            int x = Mathf.RoundToInt(delta.x / 0.82f);
-            int y = Mathf.RoundToInt(delta.y / 0.82f);
+            //int x = Mathf.RoundToInt(delta.x / 0.82f);
+            //int y = Mathf.RoundToInt(delta.y / 0.82f);
+            int x = Mathf.RoundToInt(delta.x / 0.8f);
+            int y = Mathf.RoundToInt(delta.y / 0.8f);
             int[] shema = go.GetComponent<Order>().GetShema();
             print($"in box delta={delta} x={x} y={y}");
             if (CheckPacking(shema, x, y))
@@ -97,6 +100,7 @@ public class BoxTrigger : MonoBehaviour
                 go.transform.position = new Vector3(pos00.x - 0.8f * x, pos00.y - 0.8f * y, pos00.z);
                 //print($"go.transform.position={go.transform.position}");
                 go.transform.parent = transform;
+                go.GetComponent<Order>().SetPacking();
                 //print($"go.transform.position={go.transform.position} locPos={go.transform.localPosition} parent={go.transform.parent}({go.transform.parent.name})");
                 CarControl carControl = transform.parent.gameObject.GetComponent<CarControl>();
                 if (carControl != null)
@@ -124,7 +128,7 @@ public class BoxTrigger : MonoBehaviour
 
     private bool CheckPacking(int[] sh, int x, int y)
     {
-        int i, sx, sy;
+        int i, sx, sy, index;
         bool isPacking = true;
         for (i = 0; i < sh.Length; i++)
         {
@@ -132,7 +136,9 @@ public class BoxTrigger : MonoBehaviour
             {
                 sx = i % 4 + x - 2;
                 sy = i / 4 + y - 1;
-                if (pole[col * sy + sx] != 0) return false;
+                index = col * sy + sx;
+                if (index < 0 || index >= col * row) return false;
+                if (pole[index] != 0) return false;
             }
         }
         return isPacking;

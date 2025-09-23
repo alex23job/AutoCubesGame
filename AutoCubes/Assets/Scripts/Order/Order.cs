@@ -14,7 +14,7 @@ public class Order : MonoBehaviour
     private Vector3 deltaPos = Vector3.zero;
     private bool isMove = false;
     private bool isMovement = false;
-    private float moveSpeed = 5f;
+    private float moveSpeed = 10f;
     private BoxTrigger boxTrigger = null;
     private bool isPacking = false;
 
@@ -146,7 +146,7 @@ public class ShemaOrder
             Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 }));
             Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0 }));
             Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0 }));
-            Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0 }));
+            Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0 }));
             Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 }));
             Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0 }));
             Orders.Add(new ShemaOrder(new int[16] { 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0 }));

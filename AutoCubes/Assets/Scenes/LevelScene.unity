@@ -273,8 +273,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0.024383323, b: 0.6320754, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -709,6 +709,18 @@ MonoBehaviour:
   - {fileID: 402005983308726363, guid: 65b64cffe6f77d64a947a4397bd5c9c1, type: 3}
   - {fileID: 8278576337422234215, guid: 17fc8cc5f974b264b9247f96bac2f1cc, type: 3}
   - {fileID: 7709221734983240820, guid: a08283067fe49b843b8e466b36918d4d, type: 3}
+  - {fileID: 898581408901379548, guid: 3d7a821434006c541b2035d329f7a11b, type: 3}
+  - {fileID: 4697105016208844390, guid: 841f0bcdfa512a149adfab7103dc2ecd, type: 3}
+  - {fileID: 6239202045967381960, guid: 8a347d2b5152c344a8240fbed15a2fed, type: 3}
+  - {fileID: 6025297860728991749, guid: 46a02faaba672bc4d811e02f0c851531, type: 3}
+  - {fileID: 7868716865925046702, guid: 24d31b96229171e4fb0988d1f5008d90, type: 3}
+  - {fileID: 8238818675022656481, guid: 92a9321e581f84849997e63e02adee80, type: 3}
+  - {fileID: 9014602245742383918, guid: 51be1fd8d0686c645ae7248cf12f4c4e, type: 3}
+  - {fileID: 8822539015724156439, guid: 6d1c591eebcb4774fb02facfe6a84956, type: 3}
+  - {fileID: 1309433733551701805, guid: 46705b4bdd516c841b979e3f3ce85da0, type: 3}
+  - {fileID: 8303112523245717766, guid: b13b3acba2c49614aad2dfd78d51ab5a, type: 3}
+  - {fileID: 76833831940546494, guid: 9920fc450f3e67f44a34972cb4be489e, type: 3}
+  - {fileID: 5454616490240491443, guid: eba9ebb31ee763f488ef7b3ab0c68744, type: 3}
 --- !u!4 &790282195
 Transform:
   m_ObjectHideFlags: 0
@@ -2877,7 +2889,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000008940697, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3, y: -10, z: 0}
-  m_LocalScale: {x: 40, y: 40, z: 80}
+  m_LocalScale: {x: 60, y: 40, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 610659122}

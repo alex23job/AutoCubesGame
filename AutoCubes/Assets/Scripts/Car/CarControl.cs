@@ -110,7 +110,7 @@ public class CarControl : MonoBehaviour
             TurnWheels(1);
             speed = -5f;
         }
-        print($"isForward={isForward}  speed={speed}   tg={tg}");
+        //print($"isForward={isForward}  speed={speed}   tg={tg}");
     }
 
     public void TurnWheels(int direction)

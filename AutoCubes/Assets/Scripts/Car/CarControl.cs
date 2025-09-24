@@ -87,7 +87,13 @@ public class CarControl : MonoBehaviour
     private void MoveCarWrapper()
     {
         MoveCar(isForward, spawnPosition, false);
-        Destroy(gameObject, 15f);
+        Invoke("DestroyCar", 10f);
+    }
+
+    private void DestroyCar()
+    {
+        levelControl.CarDestroing(gameObject);
+        Destroy(gameObject, 0.5f);
     }
 
     public void MoveCar(bool isForward, Vector3 tg, bool isTargetCorrect = true)

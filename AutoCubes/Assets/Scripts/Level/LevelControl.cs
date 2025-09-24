@@ -59,6 +59,11 @@ public class LevelControl : MonoBehaviour
         }
     }
 
+    public void CarDestroing(GameObject car)
+    {
+        cars.Remove(car);
+    }
+
     private void SpawnCarWrapper()
     {
         if (nextSpawnCarPoint >= 0 && nextSpawnCarPoint < spawnCars.Length) SpawnCar(nextSpawnCarPoint);

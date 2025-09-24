@@ -418,8 +418,8 @@ MonoBehaviour:
   row: 4
   col: 5
   numsOccupiedCells: 
-  offsetX: 0.0145
-  offsetY: 0.019
+  offsetX: 0.0125
+  offsetY: 0.018
 --- !u!54 &1329706496546653813
 Rigidbody:
   m_ObjectHideFlags: 0

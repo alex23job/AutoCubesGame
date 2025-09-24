@@ -1,9 +1,11 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelControl : MonoBehaviour
 {
+    [SerializeField] private UI_Control ui_Control;
     [SerializeField] private SpawnCars[] spawnCars;
     [SerializeField] private GameObject[] clocks;
     [SerializeField] private GameObject[] terminals;
@@ -15,6 +17,8 @@ public class LevelControl : MonoBehaviour
     private List<GameObject> orders = new List<GameObject>();
 
     private List<int> nextSpawnCarPoint = new List<int>();
+
+    private LevelInfo levelInfo = new LevelInfo(10, 100);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +63,7 @@ public class LevelControl : MonoBehaviour
             if ((carControl != null) && (carControl.NumSpawnPoint == numSpawnPoint))
             {
                 carControl.CarToWay();
+                levelInfo.AddCars(1, ui_Control);
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[numSpawnPoint].SetActive(false);
                 nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
@@ -111,6 +116,7 @@ public class LevelControl : MonoBehaviour
 
     public void PackingOrderToCar(GameObject car, GameObject order, bool isFull)
     {
+        levelInfo.AddOrders(1, ui_Control);
         CarControl carControl = car.GetComponent<CarControl>();
         if (carControl != null)
         {
@@ -121,6 +127,7 @@ public class LevelControl : MonoBehaviour
                 Invoke("SpawnCarWrapper", 4f);
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[carControl.NumSpawnPoint].SetActive(false);
+                levelInfo.AddCars(1, ui_Control);
             }
             else
             {
@@ -159,5 +166,47 @@ public class LevelControl : MonoBehaviour
             nextPos.x -= 3.65f;
         }
         return 3.65f * i;
+    }
+}
+
+[Serializable]
+public class LevelInfo
+{
+    private int maxCars;
+    private int maxOrders;
+    private int countCars = 0;
+    private int countOrders = 0;
+    private int countMany = 0;
+    private int countExp = 0;
+
+    public LevelInfo() { }
+    public LevelInfo(int maxCars, int maxOrders)
+    {
+        this.maxCars = maxCars;
+        this.maxOrders = maxOrders;
+    }
+
+    public void AddCars(int count, UI_Control ui_Control)
+    {
+        countCars += count;
+        ui_Control.ViewCars(countCars, maxCars);
+    }
+
+    public void AddOrders(int count, UI_Control ui_Control)
+    {
+        countOrders += count;
+        ui_Control.ViewOrders(countOrders, maxOrders);
+    }
+
+    public void AddExp(int count, UI_Control ui_Control)
+    {
+        countExp += count;
+        ui_Control.ViewExp(countExp);
+    }
+
+    public void AddMany(int count, UI_Control ui_Control)
+    {
+        countMany += count;
+        ui_Control.ViewMany(countMany);
     }
 }

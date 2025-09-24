@@ -17,7 +17,7 @@ public class UI_Control : MonoBehaviour
         ViewExp(0);
         ViewMany(0);
         ViewCars(0, 10);
-        ViewOrders(100, 100);
+        ViewOrders(0, 100);
     }
 
     // Update is called once per frame

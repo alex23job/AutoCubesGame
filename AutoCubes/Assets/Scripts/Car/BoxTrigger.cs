@@ -144,7 +144,9 @@ public class BoxTrigger : MonoBehaviour
             if (sh[i] == 1)
             {
                 sx = i % 4 + x - 2;
+                if ((sx < 0) || (sx >= col)) return false;
                 sy = i / 4 + y - 1;
+                if ((sy < 0) || (sy >= row)) return false;
                 index = col * sy + sx;
                 if (index < 0 || index >= col * row) return false;
                 if (pole[index] != 0) return false;

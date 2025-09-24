@@ -6,6 +6,7 @@ public class LevelControl : MonoBehaviour
 {
     [SerializeField] private SpawnCars[] spawnCars;
     [SerializeField] private GameObject[] clocks;
+    [SerializeField] private GameObject[] terminals;
     [SerializeField] private SpawnOrders spawnOrders;
     [SerializeField] private Transform firstOrderPoint;
     [SerializeField] private int delayCarToWay = 150;
@@ -13,7 +14,7 @@ public class LevelControl : MonoBehaviour
     private List<GameObject> cars = new List<GameObject>();
     private List<GameObject> orders = new List<GameObject>();
 
-    private int nextSpawnCarPoint = -1;
+    private List<int> nextSpawnCarPoint = new List<int>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +44,13 @@ public class LevelControl : MonoBehaviour
         
     }
 
+    public void OpenTerminal(GameObject terminal)
+    {
+        int numSpawnCar = terminal.GetComponent<TerminalControl>().NumberTerminal;
+        terminal.SetActive(false);
+        SpawnCar(numSpawnCar);
+    }
+
     public void CarGO(int numSpawnPoint)
     {
         foreach(GameObject car in cars)
@@ -53,7 +61,7 @@ public class LevelControl : MonoBehaviour
                 carControl.CarToWay();
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[numSpawnPoint].SetActive(false);
-                nextSpawnCarPoint = carControl.NumSpawnPoint;
+                nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
                 Invoke("SpawnCarWrapper", 4f);
             }
         }
@@ -66,7 +74,13 @@ public class LevelControl : MonoBehaviour
 
     private void SpawnCarWrapper()
     {
-        if (nextSpawnCarPoint >= 0 && nextSpawnCarPoint < spawnCars.Length) SpawnCar(nextSpawnCarPoint);
+        int nextSpawnPoint;
+        if (nextSpawnCarPoint.Count > 0)
+        {
+            nextSpawnPoint = nextSpawnCarPoint[0];
+            nextSpawnCarPoint.RemoveAt(0);
+            if (nextSpawnPoint >= 0 && nextSpawnPoint < spawnCars.Length) SpawnCar(nextSpawnPoint);
+        }
     }
 
     private void SpawnCar(int numSpawnPoint)
@@ -103,7 +117,7 @@ public class LevelControl : MonoBehaviour
             if (isFull)
             {
                 carControl.CarToWay();
-                nextSpawnCarPoint = carControl.NumSpawnPoint;
+                nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
                 Invoke("SpawnCarWrapper", 4f);
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[carControl.NumSpawnPoint].SetActive(false);

@@ -79,9 +79,46 @@ public class CarControl : MonoBehaviour
 
     public void PackingOrder(GameObject order, bool isFull)
     {
+        int orderZnak = order.GetComponent<Order>().Znak;
         int orderCeils = order.GetComponent<Order>().CountCeils;
-        priceCar += Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
-        expCar += orderCeils;
+        if (orderZnak > 0)
+        {   //  логика обработки знаков заказов, текущей температуры и термосвойств кузова автомобиля
+            int currentTermo = order.GetComponent<Order>().Termo;
+            if (orderZnak == 2 && carInfo.Termo == 2)
+            {   //  замороженное отвезли в холодильнике !!!
+                priceCar += Mathf.CeilToInt(3 * carInfo.PriceMult * orderCeils);
+                expCar += 2 * orderCeils;
+            }
+            if (carInfo.Termo == 0)
+            {
+                if (orderZnak == 2 && currentTermo > 0)
+                {
+                    priceCar -= Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
+                }
+                if (orderZnak == 1 && currentTermo < 0)
+                {
+                    priceCar -= Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
+                }
+                if ((orderZnak == 2 && currentTermo < 0) || (orderZnak == 1 && currentTermo > 0))
+                {
+                    priceCar += Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
+                    expCar += orderCeils;
+                }
+            }
+            if ((carInfo.Termo == 2 && orderZnak == 1) || (carInfo.Termo == 1 && orderZnak == 2))
+            {
+                priceCar -= Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
+            }
+            if (carInfo.Termo == 1 && orderZnak == 1)
+            {
+                expCar += Mathf.CeilToInt(1.5f * orderCeils);
+            }
+        }
+        else
+        {
+            priceCar += Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
+            expCar += orderCeils;
+        }
         if (isFull) expCar += 20;
         levelControl.PackingOrderToCar(gameObject, order, isFull);
     }

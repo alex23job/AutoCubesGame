@@ -18,7 +18,7 @@ public class LevelControl : MonoBehaviour
 
     private List<int> nextSpawnCarPoint = new List<int>();
 
-    private LevelInfo levelInfo = new LevelInfo(10, 100);
+    private LevelInfo levelInfo = new LevelInfo(10, 100, true);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +39,10 @@ public class LevelControl : MonoBehaviour
         SpawnCar(2);
         SpawnCar(3);
         Invoke("CarsToWay", 30f);*/
+        
+        int termo = UnityEngine.Random.Range(-30, 50);
+        ui_Control.ViewTermo(termo);
+        spawnOrders.SetMarkering(levelInfo.IsMarkering, termo);  //  true пока - надо из инфы про уровень
         for (int j = 0; j < 7; j++) SpawnOrder();
     }
 
@@ -142,6 +146,7 @@ public class LevelControl : MonoBehaviour
                 }
             }
         }
+        if (levelInfo.TestFinish()) ui_Control.ViewEndLevelPanel();
         SpawnOrder();
     }
 
@@ -182,12 +187,16 @@ public class LevelInfo
     private int countOrders = 0;
     private int countMany = 0;
     private int countExp = 0;
+    private bool isMarkering = false;
+
+    public bool IsMarkering { get => isMarkering; }
 
     public LevelInfo() { }
-    public LevelInfo(int maxCars, int maxOrders)
+    public LevelInfo(int maxCars, int maxOrders, bool isMarkering = false)
     {
         this.maxCars = maxCars;
         this.maxOrders = maxOrders;
+        this.isMarkering = isMarkering;
     }
 
     public void AddCars(int count, UI_Control ui_Control)
@@ -212,5 +221,10 @@ public class LevelInfo
     {
         countMany += count;
         ui_Control.ViewMany(countMany);
+    }
+
+    public bool TestFinish()
+    {
+        return ((countCars >= maxCars) && (countOrders >= maxOrders));
     }
 }

@@ -18,9 +18,13 @@ public class Order : MonoBehaviour
     private float moveSpeed = 10f;
     private BoxTrigger boxTrigger = null;
     private bool isPacking = false;
+    private int znak = 0;
+    private int termo = 0;
 
     public bool IsPacking { get { return isPacking; } }
     public int CountCeils { get { return countCeils; } }
+    public int Znak { get => znak; }
+    public int Termo { get => termo; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -75,6 +79,12 @@ public class Order : MonoBehaviour
         isMovement = true;
     }
 
+    public void SetZnak(int zn, int termo)
+    {
+        znak = zn;
+        this.termo = termo;
+    }
+
     public void SetPacking()
     {
         isPacking = true;
@@ -107,6 +117,7 @@ public class Order : MonoBehaviour
             {
                 shemaOrder.Rotate90();
                 transform.Rotate(0, 0, 90, Space.World);
+                transform.position = startPos;
                 //return;
                 /*Vector3 rot = transform.rotation.eulerAngles;
                 rot.z += 90f;rot.z = Mathf.RoundToInt(rot.z) % 360;

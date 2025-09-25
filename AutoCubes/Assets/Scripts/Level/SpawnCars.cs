@@ -30,7 +30,7 @@ public class SpawnCars : MonoBehaviour
     {
         if (transform.position.x < 0) isLeft = false; else isLeft = true;
         int numPrefab = Random.Range(0, carPrefabs.Length);
-        numPrefab = 6;  //  пока только 1 машина
+        //numPrefab = 6;  //  пока только 1 машина
         GameObject car = Instantiate(carPrefabs[numPrefab], transform.position, Quaternion.identity);
         Vector3 target = transform.position;
         if (isLeft) { target.x -= 22f; }

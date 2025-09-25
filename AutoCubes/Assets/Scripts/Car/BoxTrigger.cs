@@ -92,7 +92,7 @@ public class BoxTrigger : MonoBehaviour
     {
         Vector3 goPos = go.transform.position, delta;        
         print($"Test in box => pos00=<{pos00}> goPos=<{goPos}> posEND=<{posEND}>");
-        if (((goPos.x < pos00.x + 0.5f) && (goPos.x > posEND.x)) && ((goPos.y < pos00.y + 0.7f) && (goPos.y > posEND.y)))
+        if (((goPos.x < pos00.x + 0.5f) && (goPos.x > posEND.x - 0.3f)) && ((goPos.y < pos00.y + 0.7f) && (goPos.y > posEND.y - 0.3f)))
         {
             //goPos.x -= 0.4f; goPos.y += 0.4f;
             goPos.x -= 0.2f; goPos.y += 0.2f;

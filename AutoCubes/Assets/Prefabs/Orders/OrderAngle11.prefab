@@ -155,3 +155,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurn: 1
   shemaID: 2
+  countCeils: 3

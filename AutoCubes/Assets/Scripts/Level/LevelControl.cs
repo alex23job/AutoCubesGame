@@ -64,6 +64,8 @@ public class LevelControl : MonoBehaviour
             {
                 carControl.CarToWay();
                 levelInfo.AddCars(1, ui_Control);
+                levelInfo.AddExp(carControl.ExpCar, ui_Control);
+                levelInfo.AddMany(carControl.PriceCar, ui_Control);
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[numSpawnPoint].SetActive(false);
                 nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
@@ -128,6 +130,8 @@ public class LevelControl : MonoBehaviour
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[carControl.NumSpawnPoint].SetActive(false);
                 levelInfo.AddCars(1, ui_Control);
+                levelInfo.AddExp(carControl.ExpCar, ui_Control);
+                levelInfo.AddMany(carControl.PriceCar, ui_Control);
             }
             else
             {

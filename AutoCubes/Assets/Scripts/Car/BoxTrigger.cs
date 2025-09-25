@@ -131,7 +131,7 @@ public class BoxTrigger : MonoBehaviour
         for (int i = 0; i < pole.Length; i++) 
         {
             if (pole[i] == 0) return false;
-        }
+        }        
         return isFull;
     }
 

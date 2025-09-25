@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurn: 1
   shemaID: 13
+  countCeils: 6
 --- !u!65 &6155995972192108273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -170,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurn: 0
   shemaID: 0
+  countCeils: 1

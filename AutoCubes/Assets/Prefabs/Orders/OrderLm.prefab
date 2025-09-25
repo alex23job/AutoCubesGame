@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurn: 0
   shemaID: 0
+  countCeils: 1
 --- !u!1 &8822539015724156439
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurn: 1
   shemaID: 10
+  countCeils: 4
 --- !u!65 &7534422316960075880
 BoxCollider:
   m_ObjectHideFlags: 0

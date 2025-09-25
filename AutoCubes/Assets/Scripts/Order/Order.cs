@@ -7,6 +7,7 @@ public class Order : MonoBehaviour
 {
     [SerializeField] private bool isTurn = false;
     [SerializeField] private int shemaID = 0;
+    [SerializeField] private int countCeils = 1;
 
     private ShemaOrder shemaOrder;
     private Vector3 target;
@@ -19,6 +20,7 @@ public class Order : MonoBehaviour
     private bool isPacking = false;
 
     public bool IsPacking { get { return isPacking; } }
+    public int CountCeils { get { return countCeils; } }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

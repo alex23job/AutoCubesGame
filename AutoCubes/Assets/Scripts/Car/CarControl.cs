@@ -14,7 +14,13 @@ public class CarControl : MonoBehaviour
     private LevelControl levelControl;
     private int numSpawnPoint = -1;
 
+    private int expCar = 0;
+    private int priceCar = 0;
+
     public int NumSpawnPoint {  get { return numSpawnPoint; } }
+    public int CarID { get { return carInfo.CarID; } }
+    public int ExpCar { get => expCar; }
+    public int PriceCar { get => priceCar; }
 
     private void Awake()
     {
@@ -22,7 +28,6 @@ public class CarControl : MonoBehaviour
         wheels = transform.GetComponentsInChildren<Wheel>();
         wallBox = transform.GetComponentInChildren<WallBox>();
     }
-    public int CarID { get { return carInfo.CarID; } }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -74,6 +79,10 @@ public class CarControl : MonoBehaviour
 
     public void PackingOrder(GameObject order, bool isFull)
     {
+        int orderCeils = order.GetComponent<Order>().CountCeils;
+        priceCar += Mathf.CeilToInt(carInfo.PriceMult * orderCeils);
+        expCar += orderCeils;
+        if (isFull) expCar += 20;
         levelControl.PackingOrderToCar(gameObject, order, isFull);
     }
 

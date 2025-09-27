@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 8784145250812270973}
   - component: {fileID: 2989466744272425424}
   - component: {fileID: 431535548349398264}
+  - component: {fileID: 3226328685807233049}
   m_Layer: 0
   m_Name: Car5
   m_TagString: Untagged
@@ -546,6 +547,18 @@ MonoBehaviour:
   offsetY: 0.4
   priceMult: 1.5
   termo: 1
+--- !u!114 &3226328685807233049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500399349774475855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67a98bad90bbd74cbc01ec8c7cecdc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5233068744584373537
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,10 +71,10 @@ MeshRenderer:
   m_Materials:
   - {fileID: 7421232953580242548, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   - {fileID: -1580535799172915004, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
-  - {fileID: 3609018082110429662, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   - {fileID: 3036521955322547851, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   - {fileID: 8556262120643298411, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   - {fileID: 9003353085549565770, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
+  - {fileID: 3609018082110429662, guid: b4a85bbaf3d9da246adf9ef09ad59d5a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 7349773538951825165}
   - component: {fileID: 7951790703178757462}
   - component: {fileID: 576150389906499623}
+  - component: {fileID: -7881102779079073309}
   m_Layer: 0
   m_Name: Car7
   m_TagString: Untagged
@@ -436,6 +437,18 @@ MonoBehaviour:
   offsetY: 0.61
   priceMult: 5
   termo: 1
+--- !u!114 &-7881102779079073309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4939401303218982219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67a98bad90bbd74cbc01ec8c7cecdc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6643103097818392173
 GameObject:
   m_ObjectHideFlags: 0

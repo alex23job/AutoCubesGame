@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 701985627102322886}
   - component: {fileID: 4179962151081743935}
   - component: {fileID: 8337382199919808847}
+  - component: {fileID: 2525028501962358710}
   m_Layer: 0
   m_Name: Car3
   m_TagString: Untagged
@@ -515,6 +516,18 @@ MonoBehaviour:
   offsetY: 0
   priceMult: 4
   termo: 2
+--- !u!114 &2525028501962358710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629369206600722246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67a98bad90bbd74cbc01ec8c7cecdc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6659319345939886139
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
             PlayersGarage.Instance.SetGarageCsvString(data.csvGarage);
         }
 
-            GameManager.Instance.currentPlayer.isHintView = data.isHints;
+        GameManager.Instance.currentPlayer.isHintView = data.isHints;
         GameManager.Instance.currentPlayer.isSoundFone = data.isFone;
         GameManager.Instance.currentPlayer.isSoundEffects = data.isEffects;
         GameManager.Instance.currentPlayer.volumeFone = data.volFone;
@@ -131,11 +131,13 @@ public class GameManager : MonoBehaviour
         SaveData data = new SaveData();
 
         data.score = GameManager.Instance.currentPlayer.totalScore;
+        data.gold = GameManager.Instance.currentPlayer.totalGold;
         data.level = GameManager.Instance.currentPlayer.maxLevel;
 
         data.scene = GameManager.Instance.currentPlayer.nameOldScene;
         data.posAndRot = GameManager.Instance.currentPlayer.PosAndRotToCsvString();
 
+        data.csvGarage = PlayersGarage.Instance.GarageToCsvString();
         //data.csvInventory = GameManager.Instance.currentPlayer.inventory.ToCsvString();
 
         data.isHints = GameManager.Instance.currentPlayer.isHintView;

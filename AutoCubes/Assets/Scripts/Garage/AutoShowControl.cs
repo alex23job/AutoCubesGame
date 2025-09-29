@@ -12,6 +12,7 @@ public class AutoShowControl : MonoBehaviour
     private Animator anim;
     private bool isRotate = false;
     private int currentViewCar = -1;
+    private bool isCarAdding = false;
 
     private void Awake()
     {
@@ -82,10 +83,12 @@ public class AutoShowControl : MonoBehaviour
         GameManager.Instance.currentPlayer.totalGold -= carPassport.PriceCar;
         ViewGold();
         PlayersGarage.Instance.AddCar(carPassport.CarID);
+        isCarAdding = true;
     }
 
     public void LoadMenu()
     {
+        if (isCarAdding) GameManager.Instance.SaveGame();
         SceneManager.LoadScene("MainMenu");
     }
 

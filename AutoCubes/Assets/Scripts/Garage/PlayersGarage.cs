@@ -47,6 +47,9 @@ public class PlayersGarage : MonoBehaviour
 
     public void CreateAllPlayerCars()
     {
+        //if ((loadingCsvGarageString == "") || (cars.Count > 0)) return;
+        if (loadingCsvGarageString == "") return;
+        cars.Clear();
         string[] ar = loadingCsvGarageString.Split(defaultSeparator, System.StringSplitOptions.RemoveEmptyEntries);
         foreach (string carCsv in ar)
         {
@@ -73,6 +76,26 @@ public class PlayersGarage : MonoBehaviour
         }
     }
 
+    public CarPassport GetNextPassport()
+    {
+        if (CountCars > 0)
+        {
+            if ((currentCar >= 0) && (currentCar < CountCars))
+            {
+                GameObject resCar = cars[currentCar];
+                currentCar++;
+                if (CountCars == 1) currentCar = 0;
+                else
+                {
+                    if (CountCars > 1) currentCar %= CountCars;
+                }
+                Debug.Log($"GetNextCar CountCars={CountCars} curCar={currentCar} resCar={resCar}   cars[0]={cars[0]}");
+                return resCar.GetComponent<CarPassport>();
+            }
+        }
+        return null;
+    }
+
     public GameObject GetNextCar(bool isFree = false)
     {
         if (CountCars > 0)
@@ -88,10 +111,15 @@ public class PlayersGarage : MonoBehaviour
             else
             {
                 if ((currentCar >= 0) && (currentCar < CountCars))
-                {
+                {                    
                     GameObject resCar = cars[currentCar];
                     currentCar++;
-                    currentCar %= CountCars;
+                    if (CountCars == 1) currentCar = 0;
+                    else
+                    {
+                        if (CountCars > 1) currentCar %= CountCars;
+                    }
+                    Debug.Log($"GetNextCar CountCars={CountCars} curCar={currentCar} resCar={resCar}   cars[0]={cars[0]}");
                     return resCar;
                 }
             }
@@ -114,9 +142,14 @@ public class PlayersGarage : MonoBehaviour
 
     public void AddCar(int carID)
     {
-        GameObject car = Instantiate(PrefabsPak.Instance.GetCarPrefab(carID - 1));
+        GameObject prefabCar = PrefabsPak.Instance.GetCarPrefab(carID - 1);
+        //print($"AddCar prefabCar={prefabCar}");
+        GameObject car = Instantiate(prefabCar);
         car.GetComponent<CarPassport>().PassportCarID = GenerateNextPassportCarID();
         cars.Add(car);
+        
+        loadingCsvGarageString = GarageToCsvString("#");
+        print($"AddCar countCars={CountCars} CarID={carID} car={cars[CountCars - 1]} csv={loadingCsvGarageString}");
     }
 
     private int GenerateNextPassportCarID()

@@ -26,4 +26,29 @@ public class MainMenuControl : MonoBehaviour
     {
         SceneManager.LoadScene("GaragScene");
     }
+
+    public void LoadAutoShow()
+    {
+        SceneManager.LoadScene("AutoShowScene");
+    }
+
+    public void ViewRecord()
+    {
+
+    }
+
+    public void LoadComplete()
+    {
+
+    }
+
+    public void ViewAvatar()
+    {
+
+    }
+
+    public void ViewLeaderboard(string strJson)
+    {
+
+    }
 }

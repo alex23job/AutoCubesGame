@@ -112,7 +112,7 @@ public class PlayersGarage : MonoBehaviour
         }
     }
 
-    public void AddGar(int carID)
+    public void AddCar(int carID)
     {
         GameObject car = Instantiate(PrefabsPak.Instance.GetCarPrefab(carID - 1));
         car.GetComponent<CarPassport>().PassportCarID = GenerateNextPassportCarID();

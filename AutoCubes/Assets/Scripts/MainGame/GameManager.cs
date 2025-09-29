@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         //GameManager.Instance.currentPlayer.inventory = new Inventory(data.csvInventory);
         if (data.csvGarage == "")
         {
-            PlayersGarage.Instance.AddGar(4);
+            PlayersGarage.Instance.AddCar(4);
         }
         else
         {
@@ -205,7 +205,7 @@ public class PlayerInfo
 
     public static PlayerInfo FirstGame()
     {
-        PlayersGarage.Instance.AddGar(4);
+        PlayersGarage.Instance.AddCar(4);
         return new PlayerInfo();
     }
 

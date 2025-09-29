@@ -18,15 +18,16 @@ public class CarPassport : MonoBehaviour
     [SerializeField] private int maxCeilOrders = 15;
 
     private CarInfo carInfo;
-    private int remainingTrips = 100;
+    [SerializeField] private int remainingTrips = 100;
 
+    public int BoxType { get { return carInfo.Termo; } }
     public int RemainingTrips { get { return remainingTrips; } }
     public int CarID { get { return carInfo.CarID; } } 
     public int PassportCarID { get; set; }
 
     public int PriceCar {  get { return priceCar; } }
     public int ExpForSale { get { return expForSale; } }
-    public int MavVelocity { get { return maxVelocity; } }
+    public int MaxVelocity { get { return maxVelocity; } }
     public int MaxCeilOrders { get { return maxCeilOrders; } }
 
     public bool IsUsing { get; set; } = false;

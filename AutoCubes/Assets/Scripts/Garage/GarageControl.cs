@@ -55,7 +55,7 @@ public class GarageControl : MonoBehaviour
                     {
                         child.SetActive(true);
                         CarPassport carPassport = child.GetComponent<CarPassport>();
-                        if (carPassport != null) repairCost = carPassport.RemainingTrips - garageCarPassport.RemainingTrips;
+                        if (carPassport != null) repairCost = (carPassport.RemainingTrips - garageCarPassport.RemainingTrips) * carPassport.PriceCar / 100;
                         ViewParams(garageCarPassport);
                     }
                     else child.SetActive(false);
@@ -75,7 +75,7 @@ public class GarageControl : MonoBehaviour
         ViewItemPanel(itemPanels[4], PrefabsPak.Instance.GetItemName(4, lang), $"{carPassport.RemainingTrips} ({strRepairCost} : {repairCost})");
         txtExp.text = $"{carPassport.ExpForSale}/{GameManager.Instance.currentPlayer.totalScore}";
         txtExp.color = (carPassport.ExpForSale <= GameManager.Instance.currentPlayer.totalScore) ? Color.green : Color.red;
-        txtGold.text = $"{carPassport.PriceCar}/{GameManager.Instance.currentPlayer.totalGold}";
+        txtGold.text = $"{carPassport.PriceCar - repairCost}/{GameManager.Instance.currentPlayer.totalGold}";
         txtGold.color = (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold) ? Color.green : Color.red;
     }
 

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -96,6 +97,23 @@ public class PlayersGarage : MonoBehaviour
         return null;
     }
 
+    public string GetFreeCsvCarPassport()
+    {
+        if (CountCars > 0)
+        {
+            foreach (GameObject car in cars)
+            {
+                CarPassport carPassport = car.GetComponent<CarPassport>();
+                if (carPassport != null && carPassport.IsUsing == false && carPassport.RemainingTrips > 0)
+                {
+                    carPassport.IsUsing = true;
+                    return carPassport.ToCsvString();
+                }
+            }
+        }
+        return "";
+    }
+
     public GameObject GetNextCar(bool isFree = false)
     {
         if (CountCars > 0)
@@ -168,6 +186,26 @@ public class PlayersGarage : MonoBehaviour
             return maxNum + 1;
         }
         return 1;
+    }
+
+    public void UsingCarTrip(int passportID)
+    {
+        if (CountCars > 0)
+        {
+            foreach (GameObject car in cars)
+            {
+                CarPassport carPassport = car.GetComponent<CarPassport>();
+                if (carPassport != null)
+                {
+                    if (carPassport.PassportCarID == passportID)
+                    {
+                        carPassport.UsingTrip();
+                        carPassport.IsUsing = false;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     public string GarageToCsvString(string sep = "#")

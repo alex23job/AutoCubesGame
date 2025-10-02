@@ -169,6 +169,7 @@ public class PlayerInfo
     public int sessionScore = 0;
     public int currentScore = 0;
     public int totalGold = 0;
+    public int sessionGold = 0;
     public int maxLevel = 1;
     public int currentLevel = 1;
 
@@ -221,6 +222,12 @@ public class PlayerInfo
         }
         sessionScore += currentScore;
         if (sessionScore > totalScore) totalScore = sessionScore;
+    }
+
+    public void LevelExpAndManyUpdate()
+    {
+        totalScore += sessionScore;
+        totalGold += sessionGold;
     }
 
     public void ClearCurrentParam()

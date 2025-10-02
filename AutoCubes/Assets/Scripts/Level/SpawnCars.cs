@@ -29,13 +29,28 @@ public class SpawnCars : MonoBehaviour
     public GameObject SpawnCar()
     {
         if (transform.position.x < 0) isLeft = false; else isLeft = true;
-        int numPrefab = Random.Range(0, carPrefabs.Length);
+        string csvPassport = PlayersGarage.Instance.GetFreeCsvCarPassport();
+        if (string.IsNullOrEmpty(csvPassport)) return null;
+        int carID = CarPassport.GetCarIDFromCsv(csvPassport);
+        int numPrefab =  -1;
+        for (int i = 0; i < carPrefabs.Length; i++)
+        {
+            CarInfo carInfo = carPrefabs[i].GetComponent<CarInfo>();
+            if ((carInfo != null) && (carInfo.CarID == carID))
+            {
+                numPrefab = i;
+                break;
+            }
+        }
+        //int numPrefab = Random.Range(0, carPrefabs.Length);
         //numPrefab = 6;  //  пока только 1 машина
         GameObject car = Instantiate(carPrefabs[numPrefab], transform.position, Quaternion.identity);
         Vector3 target = transform.position;
         if (isLeft) { target.x -= 22f; }
         else { target.x += 27f; }
         print($"name={transform.name}  pos={transform.position}  isLeft={isLeft}   target={target}");
+        CarPassport carPassport = car.GetComponent<CarPassport>();
+        carPassport.SetParamsFromCsv(csvPassport);
         CarControl carControl = car.GetComponent<CarControl>();
         carControl.SetLevelControl(levelControl, numSpawnPoint);
         carControl.MoveCar(isLeft, target);

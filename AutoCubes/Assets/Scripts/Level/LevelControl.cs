@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelControl : MonoBehaviour
@@ -33,6 +34,7 @@ public class LevelControl : MonoBehaviour
             clocks[i].GetComponent<ClockControl>().SetNumPoint(i);
             clocks[i].SetActive(false);
         }
+        PlayersGarage.Instance.CreateAllPlayerCars();
         //foreach(SpawnCars spawnCar in spawnCars) 
         SpawnCar(0);
         /*SpawnCar(1);
@@ -74,6 +76,7 @@ public class LevelControl : MonoBehaviour
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[numSpawnPoint].SetActive(false);
                 nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
+                PlayersGarage.Instance.UsingCarTrip(car.GetComponent<CarPassport>().PassportCarID);
                 Invoke("SpawnCarWrapper", 4f);
             }
         }
@@ -131,6 +134,7 @@ public class LevelControl : MonoBehaviour
             {
                 carControl.CarToWay();
                 nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
+                PlayersGarage.Instance.UsingCarTrip(car.GetComponent<CarPassport>().PassportCarID);
                 Invoke("SpawnCarWrapper", 4f);
                 clocks[carControl.NumSpawnPoint].GetComponent<ClockControl>().StopTimer();
                 clocks[carControl.NumSpawnPoint].SetActive(false);
@@ -147,7 +151,14 @@ public class LevelControl : MonoBehaviour
                 }
             }
         }
-        if (levelInfo.TestFinish()) ui_Control.ViewEndLevelPanel();
+        if (levelInfo.TestFinish())
+        {
+            GameManager.Instance.currentPlayer.sessionGold = levelInfo.Many;
+            GameManager.Instance.currentPlayer.sessionScore = levelInfo.Exp;
+            GameManager.Instance.currentPlayer.LevelExpAndManyUpdate();
+            PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.GarageToCsvString());
+            ui_Control.ViewEndLevelPanel();
+        }
         SpawnOrder();
     }
 
@@ -191,6 +202,8 @@ public class LevelInfo
     private bool isMarkering = false;
 
     public bool IsMarkering { get => isMarkering; }
+    public int Exp { get => countExp; }
+    public int Many { get => countMany; }
 
     public LevelInfo() { }
     public LevelInfo(int maxCars, int maxOrders, bool isMarkering = false)

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine;
 public class LevelControl : MonoBehaviour
 {
     [SerializeField] private UI_Control ui_Control;
+    //[SerializeField] private Yandex yandex;
     [SerializeField] private SpawnCars[] spawnCars;
     [SerializeField] private GameObject[] clocks;
     [SerializeField] private GameObject[] terminals;
@@ -24,6 +24,8 @@ public class LevelControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        levelInfo = LevelInfo.GetLevel(GameManager.Instance.currentPlayer.currentLevel - 1);
+        levelInfo.ViewStartCarsAndOrders(ui_Control);
         int i;
         for (i = 0; i < spawnCars.Length; i++)
         {
@@ -53,6 +55,19 @@ public class LevelControl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OpenTerminal(int numTerminal)
+    {
+        foreach (GameObject terminal in terminals)
+        {
+            int numSpawnCar = terminal.GetComponent<TerminalControl>().NumberTerminal;
+            if (numSpawnCar == numTerminal)
+            {
+                terminal.SetActive(false);
+                SpawnCar(numSpawnCar);
+            }
+        }
     }
 
     public void OpenTerminal(GameObject terminal)
@@ -156,10 +171,19 @@ public class LevelControl : MonoBehaviour
             GameManager.Instance.currentPlayer.sessionGold = levelInfo.Many;
             GameManager.Instance.currentPlayer.sessionScore = levelInfo.Exp;
             GameManager.Instance.currentPlayer.LevelExpAndManyUpdate();
+            GameManager.Instance.currentPlayer.LevelComplete();
+            GameManager.Instance.SaveGame();
             PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.GarageToCsvString());
             ui_Control.ViewEndLevelPanel();
         }
         SpawnOrder();
+    }
+
+    public void AddRewardedGold(int value)
+    {
+        GameManager.Instance.currentPlayer.totalGold += value;
+        GameManager.Instance.SaveGame();
+        ui_Control.ViewEndMany(levelInfo.Many * 2);
     }
 
     private float MoveOrders()
@@ -187,58 +211,5 @@ public class LevelControl : MonoBehaviour
             nextPos.x -= 3.65f;
         }
         return 3.65f * i;
-    }
-}
-
-[Serializable]
-public class LevelInfo
-{
-    private int maxCars;
-    private int maxOrders;
-    private int countCars = 0;
-    private int countOrders = 0;
-    private int countMany = 0;
-    private int countExp = 0;
-    private bool isMarkering = false;
-
-    public bool IsMarkering { get => isMarkering; }
-    public int Exp { get => countExp; }
-    public int Many { get => countMany; }
-
-    public LevelInfo() { }
-    public LevelInfo(int maxCars, int maxOrders, bool isMarkering = false)
-    {
-        this.maxCars = maxCars;
-        this.maxOrders = maxOrders;
-        this.isMarkering = isMarkering;
-    }
-
-    public void AddCars(int count, UI_Control ui_Control)
-    {
-        countCars += count;
-        ui_Control.ViewCars(countCars, maxCars);
-    }
-
-    public void AddOrders(int count, UI_Control ui_Control)
-    {
-        countOrders += count;
-        ui_Control.ViewOrders(countOrders, maxOrders);
-    }
-
-    public void AddExp(int count, UI_Control ui_Control)
-    {
-        countExp += count;
-        ui_Control.ViewExp(countExp);
-    }
-
-    public void AddMany(int count, UI_Control ui_Control)
-    {
-        countMany += count;
-        ui_Control.ViewMany(countMany);
-    }
-
-    public bool TestFinish()
-    {
-        return ((countCars >= maxCars) && (countOrders >= maxOrders));
     }
 }

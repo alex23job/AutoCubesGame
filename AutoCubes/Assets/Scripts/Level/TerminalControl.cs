@@ -22,6 +22,6 @@ public class TerminalControl : MonoBehaviour
     public void OnButtonAdsClick()
     {   //  вызов функции яндекс, показывающей рекламу
         //  а пока вызываем функцию открыти€ термина сразу
-        levelControl.OpenTerminal(gameObject);
+        //levelControl.OpenTerminal(gameObject);
     }
 }

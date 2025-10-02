@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 1926046595549924373}
   - component: {fileID: 7531363190843604806}
   - component: {fileID: 2257314615177337461}
+  - component: {fileID: 2143957649928543334}
   m_Layer: 5
   m_Name: TextAds
   m_TagString: Untagged
@@ -278,8 +279,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0442\u0435\u0440\u043C\u0438\u043D\u0430\u043B\n\u0437\u0430
-    \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0440\u0435\u043A\u043B\u0430\u043C\u044B"
+  m_Text: 'Open a terminal
+
+    for viewing ads'
+--- !u!114 &2143957649928543334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381471587216615306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008cb7f729878df41914f8bb159a1171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ru: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0442\u0435\u0440\u043C\u0438\u043D\u0430\u043B
+    \u0437\u0430 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0440\u0435\u043A\u043B\u0430\u043C\u044B"
+  en: Open a terminal for viewing ads
 --- !u!1 &8128169141164078102
 GameObject:
   m_ObjectHideFlags: 0

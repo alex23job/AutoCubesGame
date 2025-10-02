@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 3965629841194431392}
   - component: {fileID: 4771041604651791160}
   - component: {fileID: 5179641840079174560}
+  - component: {fileID: 3036625194236660189}
   m_Layer: 5
   m_Name: TextGo
   m_TagString: Untagged
@@ -282,6 +283,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0415\u0425\u0410\u0422\u042C"
+--- !u!114 &3036625194236660189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3026543592850478815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008cb7f729878df41914f8bb159a1171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ru: "\u0415\u0425\u0410\u0422\u042C"
+  en: GO
 --- !u!1 &4730590786943789522
 GameObject:
   m_ObjectHideFlags: 0

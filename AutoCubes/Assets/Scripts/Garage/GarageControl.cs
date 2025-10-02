@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GarageControl : MonoBehaviour
 {
+    [SerializeField] private Button btnRepair;
+    [SerializeField] private Button btnSell;
+    [SerializeField] private Button btnNext;
     [SerializeField] private Text txtExp;
     [SerializeField] private Text txtGold;
     [SerializeField] private GameObject[] itemPanels;
@@ -12,6 +15,8 @@ public class GarageControl : MonoBehaviour
     private bool isRotate = false;
     private bool isCarsChanged = false;
     private int repairCost = 0;
+
+    private CarPassport garageCarPassport = null;
 
     private void Awake()
     {
@@ -22,6 +27,8 @@ public class GarageControl : MonoBehaviour
     void Start()
     {
         PlayersGarage.Instance.CreateAllPlayerCars();
+        btnSell.interactable = PlayersGarage.Instance.CountCars > 1;
+        btnNext.interactable = PlayersGarage.Instance.CountCars > 1;
         NextCar();
     }
 
@@ -39,7 +46,7 @@ public class GarageControl : MonoBehaviour
 
     public void NextCar()
     {
-        CarPassport garageCarPassport = PlayersGarage.Instance.GetNextPassport();
+        garageCarPassport = PlayersGarage.Instance.GetNextPassport();
         if (garageCarPassport != null)
         {
             //CarPassport carPassport = garageCar.GetComponent<CarPassport>();
@@ -57,6 +64,7 @@ public class GarageControl : MonoBehaviour
                         CarPassport carPassport = child.GetComponent<CarPassport>();
                         if (carPassport != null) repairCost = (carPassport.RemainingTrips - garageCarPassport.RemainingTrips) * carPassport.PriceCar / 100;
                         ViewParams(garageCarPassport);
+                        btnRepair.interactable = ((repairCost > 0) && (repairCost <= GameManager.Instance.currentPlayer.totalGold));
                     }
                     else child.SetActive(false);
                 }
@@ -75,8 +83,10 @@ public class GarageControl : MonoBehaviour
         ViewItemPanel(itemPanels[4], PrefabsPak.Instance.GetItemName(4, lang), $"{carPassport.RemainingTrips} ({strRepairCost} : {repairCost})");
         txtExp.text = $"{carPassport.ExpForSale}/{GameManager.Instance.currentPlayer.totalScore}";
         txtExp.color = (carPassport.ExpForSale <= GameManager.Instance.currentPlayer.totalScore) ? Color.green : Color.red;
-        txtGold.text = $"{carPassport.PriceCar - repairCost}/{GameManager.Instance.currentPlayer.totalGold}";
-        txtGold.color = (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold) ? Color.green : Color.red;
+        txtGold.text = $"{carPassport.PriceCar - repairCost}";
+        txtGold.color = Color.green;
+        //txtGold.text = $"{carPassport.PriceCar - repairCost}/{GameManager.Instance.currentPlayer.totalGold}";
+        //txtGold.color = (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold) ? Color.green : Color.red;
     }
 
     private void ViewItemPanel(GameObject panel, string name, string value)
@@ -89,11 +99,48 @@ public class GarageControl : MonoBehaviour
 
     public void OnButtonSellClick()
     {
+        if (garageCarPassport != null)
+        {
+            int profit = garageCarPassport.PriceCar - repairCost;
+            GameManager.Instance.currentPlayer.totalGold += profit;
+            PlayersGarage.Instance.RemoveCar(garageCarPassport.PassportCarID);
+            garageCarPassport = null;
+            NextCar();
+        }
         isCarsChanged = true;
     }
 
     public void OnButtonRepairClick()
     {
+        if (garageCarPassport != null)
+        {
+            if (GameManager.Instance.currentPlayer.totalGold >= repairCost)
+            {
+                GameManager.Instance.currentPlayer.totalGold -= repairCost;
+                repairCost = 0;
+                for (int i = 1; i < transform.childCount; i++)
+                {
+                    GameObject child = transform.GetChild(i).gameObject;
+                    if (child != null)
+                    {
+                        CarInfo carChildInfo = child.GetComponent<CarInfo>();
+                        if (garageCarPassport.CarID == carChildInfo.CarID)
+                        {
+                            CarPassport carPassport = child.GetComponent<CarPassport>();
+                            if (carPassport != null)
+                            {
+                                garageCarPassport.SetRemainingTrips(carPassport.RemainingTrips);
+                                PlayersGarage.Instance.RepairCar(garageCarPassport.PassportCarID, carPassport.RemainingTrips);
+                            }
+                            ViewParams(garageCarPassport);
+                            btnRepair.interactable = false;
+                            break;
+                        }
+                    }
+                }
+                
+            }
+        }
         isCarsChanged = true;
     }
 

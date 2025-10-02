@@ -664,6 +664,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb572bf6c2c3e534890d1da43acf0046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnRepair: {fileID: 1141905343}
+  btnSell: {fileID: 1187171377}
+  btnNext: {fileID: 1007445736}
   txtExp: {fileID: 179471797}
   txtGold: {fileID: 882157749}
   itemPanels:

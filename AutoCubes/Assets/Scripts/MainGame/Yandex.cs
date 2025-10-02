@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using System;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Yandex : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class Yandex : MonoBehaviour
         {
             txtName.text = "-----";
         }*/
-        Invoke("Zapros", 0.05f);
+        if (startMenu != null) Invoke("Zapros", 0.05f);
     }
 
     private void Zapros()
@@ -98,6 +99,15 @@ public class Yandex : MonoBehaviour
         AddLiveExtern(1);
         GameStop();
     }
+
+    public void ClickTerminalButton(int num)
+    {
+        AddLiveAdw(num); //  для теста пока без WebGL
+
+        AddLiveExtern(num);
+        GameStop();
+    }
+
     public void ClickRewardButton()
     {
         if (levelControl != null)
@@ -108,22 +118,31 @@ public class Yandex : MonoBehaviour
         //soundFone.Pause();
         //btnShowAdw.gameObject.SetActive(false);
 
-        //AddRewardBonus(3);
-        
-        AddBonusExtern(1);
+        AddRewardBonus(GameManager.Instance.currentPlayer.sessionGold); //  для теста пока без WebGL
+
+        AddBonusExtern(GameManager.Instance.currentPlayer.sessionGold);
         GameStop();
     }
 
     public void AddLiveAdw(int value)
     {
+        if (levelControl != null)
+        {
+            levelControl.OpenTerminal(value);
+        }
         //GameManager.Instance.currentPlayer.AddLive();
         //PlayerInfo.Instance.countLive++;
         //SaveGame();
+        GameStart();
         Invoke("SoundPlay", 5f);
     }
 
     public void AddRewardBonus(int value)
     {
+        if (levelControl != null)
+        {
+            levelControl.AddRewardedGold(value);
+        }
         //GameManager.Instance.currentPlayer.UpdateReward(GameManager.Instance.currentPlayer.currentLevel - 1);
         //GameManager.Instance.SaveGame();
         GameStart();

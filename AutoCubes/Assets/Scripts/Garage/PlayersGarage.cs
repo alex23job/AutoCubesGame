@@ -90,7 +90,7 @@ public class PlayersGarage : MonoBehaviour
                 {
                     if (CountCars > 1) currentCar %= CountCars;
                 }
-                Debug.Log($"GetNextCar CountCars={CountCars} curCar={currentCar} resCar={resCar}   cars[0]={cars[0]}");
+                //Debug.Log($"GetNextCar CountCars={CountCars} curCar={currentCar} resCar={resCar}   cars[0]={cars[0]}");
                 return resCar.GetComponent<CarPassport>();
             }
         }
@@ -137,7 +137,7 @@ public class PlayersGarage : MonoBehaviour
                     {
                         if (CountCars > 1) currentCar %= CountCars;
                     }
-                    Debug.Log($"GetNextCar CountCars={CountCars} curCar={currentCar} resCar={resCar}   cars[0]={cars[0]}");
+                    //Debug.Log($"GetNextCar CountCars={CountCars} curCar={currentCar} resCar={resCar}   cars[0]={cars[0]}");
                     return resCar;
                 }
             }
@@ -152,7 +152,10 @@ public class PlayersGarage : MonoBehaviour
             CarPassport carPassport = cars[i].GetComponent<CarPassport>();
             if (carPassport != null && carPassport.PassportCarID == passpotID)
             {
+                GameObject car = cars[i];
                 cars.RemoveAt(i);
+                Destroy(car);
+                loadingCsvGarageString = GarageToCsvString("#");
                 break;
             }
         }
@@ -201,6 +204,28 @@ public class PlayersGarage : MonoBehaviour
                     {
                         carPassport.UsingTrip();
                         carPassport.IsUsing = false;
+                        loadingCsvGarageString = GarageToCsvString("#");
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void RepairCar(int passportID, int maxTrips)
+    {
+        if (CountCars > 0)
+        {
+            foreach (GameObject car in cars)
+            {
+                CarPassport carPassport = car.GetComponent<CarPassport>();
+                if (carPassport != null)
+                {
+                    print($"RepairCar passportID={passportID} carPassportID={carPassport.PassportCarID} maxTrips={maxTrips}");
+                    if (carPassport.PassportCarID == passportID)
+                    {
+                        carPassport.SetRemainingTrips(maxTrips);
+                        loadingCsvGarageString = GarageToCsvString("#");
                         break;
                     }
                 }

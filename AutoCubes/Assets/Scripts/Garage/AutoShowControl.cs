@@ -81,7 +81,12 @@ public class AutoShowControl : MonoBehaviour
     {
         CarPassport carPassport = transform.GetChild(currentViewCar + 1).gameObject.GetComponent<CarPassport>();
         GameManager.Instance.currentPlayer.totalGold -= carPassport.PriceCar;
-        ViewGold();
+        if (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold)
+        {
+            btnBuy.interactable = true;
+        }
+        else { btnBuy.interactable = false; }
+        ViewGold(carPassport);
         PlayersGarage.Instance.AddCar(carPassport.CarID);
         isCarAdding = true;
     }
@@ -92,8 +97,9 @@ public class AutoShowControl : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void ViewGold()
+    public void ViewGold(CarPassport carPassport)
     {
-        txtGold.text = GameManager.Instance.currentPlayer.totalGold.ToString();
+        txtGold.text = $"{carPassport.PriceCar}/{GameManager.Instance.currentPlayer.totalGold}";
+        txtGold.color = (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold) ? Color.green : Color.red;
     }
 }

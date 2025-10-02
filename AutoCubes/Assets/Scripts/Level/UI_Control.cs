@@ -16,12 +16,15 @@ public class UI_Control : MonoBehaviour
     [SerializeField] private Text txtEndCars;
     [SerializeField] private Text txtEndOrders;
 
+    [SerializeField] private Button btnAds;
+
     private Color colorRed = new Color(0.8f, 0, 0);
     private Color colorGreen = new Color(0, 0.9f, 0);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        btnAds.interactable = true;
         endLevelPanel.SetActive(false);
         ViewExp(0);
         ViewMany(0);
@@ -39,6 +42,12 @@ public class UI_Control : MonoBehaviour
     {
         txtMany.text = many.ToString();
         txtEndMany.text = many.ToString();
+    }
+
+    public void ViewEndMany(int many)
+    {
+        txtEndMany.text = many.ToString();
+        //btnAds.interactable = false;
     }
 
     public void ViewCars(int cars, int maxCars)
@@ -65,6 +74,7 @@ public class UI_Control : MonoBehaviour
     public void ViewEndLevelPanel()
     {
         endLevelPanel.SetActive(true);
+        btnAds.interactable = true;
     }
 
     public void LoadMainMenu()

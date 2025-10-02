@@ -43,7 +43,8 @@ public class LevelControl : MonoBehaviour
         int termo = UnityEngine.Random.Range(-30, 50);
         ui_Control.ViewTermo(termo);
         spawnOrders.SetMarkering(levelInfo.IsMarkering, termo);  //  true пока - надо из инфы про уровень
-        for (int j = 0; j < 7; j++) SpawnOrder();
+        //for (int j = 0; j < 7; j++) SpawnOrder();
+        for (int j = 0; j < 7; j++) Invoke("SpawnOrder", j * 0.3f);
     }
 
     // Update is called once per frame

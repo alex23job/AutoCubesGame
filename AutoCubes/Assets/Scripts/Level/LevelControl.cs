@@ -36,6 +36,11 @@ public class LevelControl : MonoBehaviour
             clocks[i].GetComponent<ClockControl>().SetNumPoint(i);
             clocks[i].SetActive(false);
         }
+        int countGarageCars = PlayersGarage.Instance.CountCars;
+        for(i = 0;i < terminals.Length; i++)
+        {
+            terminals[i].GetComponent<TerminalControl>().ButtonInteractable(i + 1 < countGarageCars);
+        }
         PlayersGarage.Instance.CreateAllPlayerCars();
         //foreach(SpawnCars spawnCar in spawnCars) 
         SpawnCar(0);

@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberTerminal: 0
   levelControl: {fileID: 0}
+  btnRevarded: {fileID: 980248499619739878}
 --- !u!1 &4895879169251810954
 GameObject:
   m_ObjectHideFlags: 0

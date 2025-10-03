@@ -1,0 +1,169 @@
+using System.Text;
+using UnityEngine;
+
+public class RemovalBox : MonoBehaviour
+{
+    [SerializeField] private int row;   //  size Z
+    [SerializeField] private int col;   //  size X
+    [SerializeField] private int layer; //  size Y
+    [SerializeField] private int[] numsOccupiedCells;
+
+    private Vector3 pos00, posEND, posGridCube11;
+    private int[] pole3d;
+    private int packingLayer = -1;
+    private Transform grid = null;
+    private RemovalControl removalControl = null;
+    private int countCurrentCeils = 0;
+
+    public int CountCeils { get { return row * col * layer - numsOccupiedCells.Length; } }
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        grid = transform.GetChild(1);
+        pos00 = grid.position;
+        pos00.x -= col / 2.0f;
+        pos00.z += row / 2.0f;
+        posEND = pos00;
+        posEND.x += col;
+        posEND.z -= row;
+        posGridCube11 = grid.GetChild(0).position;
+        CreatePole();
+        removalControl.TranslateOrders(countCurrentCeils, CountCeils);
+    }
+
+    public void SetRemovalControl(RemovalControl remoControl)
+    {
+        removalControl = remoControl;
+    }
+
+    public bool TestPacking(GameObject order)
+    {
+        Vector3 ordPos = order.transform.position;
+        if (((ordPos.x > pos00.x) && (ordPos.x < posEND.x)) && ((ordPos.z < pos00.z) && (ordPos.z > posEND.z)))
+        {
+            ordPos.x += 0.5f;ordPos.z += 0.5f;
+            Vector3 delta = ordPos - posGridCube11;
+            int x = Mathf.RoundToInt(delta.x);
+            int y = Mathf.Abs(Mathf.RoundToInt(delta.z));
+            int[] shema = order.GetComponent<Order3D>().GetShema();
+
+            print($"in box3D posCube11={posGridCube11} ordPos={ordPos} delta={delta} x(col)={x} y(row)={y}");
+            if (CheckPacking(shema, x, y))
+            {
+                PackingToPole(shema, x, y);
+                countCurrentCeils += order.GetComponent<Order3D>().CountCeils;
+                removalControl.TranslateOrders(countCurrentCeils, CountCeils);
+                ordPos = posGridCube11;
+                ordPos.x += x - 0.5f;ordPos.z -= y + 0.5f;
+                order.transform.position = ordPos;
+                ordPos.y = packingLayer + 2.1f;
+                order.GetComponent<Order3D>().ResetIsKinematic(ordPos);
+                if (removalControl != null && CheckFullBox())
+                {
+
+                }
+            }
+        }
+        return false;
+    }
+
+    private bool CheckPacking(int[] sh, int x, int y)
+    {
+        int i, j, sx, sy, index, sz_layer = col * row;
+        packingLayer = -1;
+        bool isPacking = true;
+        for (j = 0; j < layer; j++)
+        {
+            isPacking = true;
+            for (i = 0; i < sh.Length; i++)
+            {
+                if (sh[i] == 1)
+                {
+                    sx = i % 4 + x - 2;
+                    if ((sx < 0) || (sx >= col)) return false;
+                    sy = i / 4 + y - 1;
+                    if ((sy < 0) || (sy >= row)) return false;
+                    index = col * sy + sx;
+                    if (index < 0 || index >= sz_layer) return false;
+                    if (pole3d[j * sz_layer + index] != 0) isPacking = false;
+                }
+            }
+            if (isPacking)
+            {
+                packingLayer = j;
+                break;
+            }
+        }
+        return isPacking;
+    }
+
+    private void PackingToPole(int[] sh, int x, int y)
+    {
+        if (packingLayer == -1) return;
+        int i, sx, sy, sz_layer = row * col;
+        for (i = 0; i < sh.Length; i++)
+        {
+            if (sh[i] == 1)
+            {
+                sx = i % 4 + x - 2;
+                sy = i / 4 + y - 1;
+                pole3d[packingLayer * sz_layer + col * sy + sx] = 1;
+            }
+        }
+        PrintPole();
+    }
+
+    private bool CheckFullBox()
+    {
+        bool isFull = true;
+        for (int i = 0; i < pole3d.Length; i++)
+        {
+            if (pole3d[i] == 0) return false;
+        }
+        return isFull;
+    }
+
+
+    private void CreatePole()
+    {        
+        int i, j, l, sz = row * col;
+        pole3d = new int[sz * layer];
+        for (l = 0; l < layer; l++)
+        {
+            for (i = 0; i < row; i++)
+            {
+                for (j = 0; j < col; j++)
+                {
+                    if (CheckOccupied(j, i, l)) pole3d[l * sz + i * col + j] = -1;
+                    else pole3d[l * sz + i * col + j] = 0;
+                }
+            }
+        }
+        PrintPole();
+    }
+
+    private bool CheckOccupied(int x, int z, int y)
+    {
+        for (int i = 0; i < numsOccupiedCells.Length; i++)
+        {
+            if (numsOccupiedCells[i] == 100 * y + 10 * z + x) return true;
+        }
+        return false;
+    }
+    private void PrintPole()
+    {
+        StringBuilder sb = new StringBuilder($"pole=<");
+        int sz = row * col;
+        for (int i = 0; i < sz * layer; i++)
+        {
+            if (i % sz == 0) sb.Append($" L{i / sz} {pole3d[i]}");
+            else if (i % col == 0) sb.Append($"  R{(i % sz) / col} {pole3d[i]}");
+            else sb.Append($" {pole3d[i]}");
+        }
+        sb.Append(">");
+        print(sb.ToString());
+    }
+
+}

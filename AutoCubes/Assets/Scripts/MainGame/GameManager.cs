@@ -172,6 +172,8 @@ public class PlayerInfo
     public int sessionGold = 0;
     public int maxLevel = 1;
     public int currentLevel = 1;
+    public int numBoxRemoval = 0;
+    public int countSecondRemoval = 300;
 
     public string nameOldScene = "";
     public Vector3 oldPosition = Vector3.zero;

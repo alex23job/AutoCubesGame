@@ -16,6 +16,7 @@ public class RemovalBox : MonoBehaviour
     private int countCurrentCeils = 0;
 
     public int CountCeils { get { return row * col * layer - numsOccupiedCells.Length; } }
+    public int CountCurrentCeils { get { return countCurrentCeils; } }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -62,7 +63,7 @@ public class RemovalBox : MonoBehaviour
                 order.GetComponent<Order3D>().ResetIsKinematic(ordPos);
                 if (removalControl != null && CheckFullBox())
                 {
-
+                    removalControl.BoxIsFull(CountCeils);
                 }
             }
         }

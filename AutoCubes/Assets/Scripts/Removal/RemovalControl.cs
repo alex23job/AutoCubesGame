@@ -18,6 +18,8 @@ public class RemovalControl : MonoBehaviour
     private int countSecond = 0;
     private int totalSecond = 300;
 
+    private int[] ArrBaseExp = { 100, 150, 200, 250};
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,6 +45,7 @@ public class RemovalControl : MonoBehaviour
             else
             {   //  время вышло - проиграл ?!
                 removalUI.ViewClock(0);
+                removalUI.ViewLossPanel(removalBox.CountCurrentCeils, removalBox.CountCeils);
             }
         }
     }
@@ -107,8 +110,9 @@ public class RemovalControl : MonoBehaviour
         removalUI.ViewOrders(countOrders, maxOrders);
     }
 
-    public void BoxIsFull()
+    public void BoxIsFull(int maxOrders)
     {
-
+        int exp = ArrBaseExp[numBox] + (1 + numBox) * (totalSecond - countSecond);
+        removalUI.ViewWinPanel(maxOrders, exp);
     }
 }

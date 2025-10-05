@@ -120,7 +120,7 @@ mergeInto(LibraryManager.library, {
           				console.log('Video ad open.');
       				},
         			onRewarded: () => {
-					console.log('Rewarded!');
+					console.log('Rewarded live!');
 					myGameInstance.SendMessage("Yandex", "AddLiveAdw", value);
       				},
         			onClose: () => {
@@ -140,8 +140,32 @@ mergeInto(LibraryManager.library, {
           				console.log('Video ad open.');
       				},
         			onRewarded: () => {
-					console.log('Rewarded!');
+					console.log('Rewarded bonus!');
 					myGameInstance.SendMessage("Yandex", "AddRewardBonus", value);
+					//myGameInstance.SendMessage("Level", "SuccesReward", value);
+					//GamePlayStart();
+      				},
+        			onClose: () => {
+          				console.log('Video ad closed.');
+					myGameInstance.SendMessage("Yandex", "AdvRewardedClose", value);
+					//GamePlayStart();
+      				}, 
+        			onError: (e) => {
+          				console.log('Error while open video ad:', e);
+      				}
+    			}
+		})
+	},
+
+	AddExpExtern : function (value) {
+		ysdk.adv.showRewardedVideo({
+        		callbacks: {
+        			onOpen: () => {
+          				console.log('Video ad open.');
+      				},
+        			onRewarded: () => {
+					console.log('Rewarded exp!');
+					myGameInstance.SendMessage("Yandex", "AddRewardExp", value);
 					//myGameInstance.SendMessage("Level", "SuccesReward", value);
 					//GamePlayStart();
       				},

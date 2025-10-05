@@ -36,6 +36,9 @@ public class Yandex : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void AddBonusExtern(int value);
 
+    [DllImport("__Internal")]
+    private static extern void AddExpExtern(int value);
+
     /*
     [SerializeField] private Text txtName;
     [SerializeField] private RawImage photo;
@@ -51,6 +54,7 @@ public class Yandex : MonoBehaviour
     [SerializeField] private Text authBtnText;
     [SerializeField] private MainMenuControl startMenu;
     [SerializeField] private LevelControl levelControl;
+    [SerializeField] private RemovalControl removalControl;
 
     private bool isReady = false;
 
@@ -103,8 +107,9 @@ public class Yandex : MonoBehaviour
     public void ClickTerminalButton(int num)
     {
         AddLiveAdw(num); //  для теста пока без WebGL
-
+#if UNITY_WEBGL
         AddLiveExtern(num);
+#endif
         GameStop();
     }
 
@@ -119,8 +124,25 @@ public class Yandex : MonoBehaviour
         //btnShowAdw.gameObject.SetActive(false);
 
         AddRewardBonus(GameManager.Instance.currentPlayer.sessionGold); //  для теста пока без WebGL
-
+#if UNITY_WEBGL
         AddBonusExtern(GameManager.Instance.currentPlayer.sessionGold);
+#endif
+        GameStop();
+    }
+    public void ClickRewardExpButton()
+    {
+        if (levelControl != null)
+        {
+            //levelControl.SoundPause();
+            //levelControl.UpdateBtnAdw(false);
+        }
+        //soundFone.Pause();
+        //btnShowAdw.gameObject.SetActive(false);
+
+        AddRewardExp(GameManager.Instance.currentPlayer.sessionScore); //  для теста пока без WebGL 2x exp
+#if UNITY_WEBGL
+        AddExpExtern(GameManager.Instance.currentPlayer.sessionScore);
+#endif
         GameStop();
     }
 
@@ -148,9 +170,26 @@ public class Yandex : MonoBehaviour
         GameStart();
         //levelControl.ClearThreeLines();
         //levelControl.ChangeSimpleFigure();
-        
+
         //levelControl.Generate3AdsTail(value);
-        
+
+        Invoke("SoundPlay", 5f);
+    }
+
+    public void AddRewardExp(int value)
+    {
+        if (removalControl != null)
+        {
+            removalControl.AddRewardedExp(value);
+        }
+        //GameManager.Instance.currentPlayer.UpdateReward(GameManager.Instance.currentPlayer.currentLevel - 1);
+        //GameManager.Instance.SaveGame();
+        GameStart();
+        //levelControl.ClearThreeLines();
+        //levelControl.ChangeSimpleFigure();
+
+        //levelControl.Generate3AdsTail(value);
+
         Invoke("SoundPlay", 5f);
     }
 

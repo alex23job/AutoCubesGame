@@ -25,6 +25,7 @@ public class RemovalControl : MonoBehaviour
     {
         numBox = GameManager.Instance.currentPlayer.numBoxRemoval;
         totalSecond = GameManager.Instance.currentPlayer.countSecondRemoval;
+        GameManager.Instance.currentPlayer.currentScore = 0;
         //numBox = 3;
         GameObject box = Instantiate(prefabBoxes[numBox], new Vector3(0, 0f, 0.7f), Quaternion.identity);
         removalBox = box.GetComponent<RemovalBox>();
@@ -95,6 +96,7 @@ public class RemovalControl : MonoBehaviour
     private GameObject CreateOrder(int numOrder, int countOrders, float dopX = 2.1f)
     {
         Vector3 pos = new Vector3(0, 5.1f, 0);
+        if (numBox == 0) pos.y -= 1f;
         GameObject order = Instantiate(prefabs3d[numOrder]);
         Order3D order3D = order.GetComponent<Order3D>();
         float dx = order3D.CX / 2.0f;
@@ -126,6 +128,14 @@ public class RemovalControl : MonoBehaviour
     public void BoxIsFull(int maxOrders)
     {
         int exp = ArrBaseExp[numBox] + (1 + numBox) * (totalSecond - countSecond);
+        GameManager.Instance.currentPlayer.currentScore = exp;
         removalUI.ViewWinPanel(maxOrders, exp);
+    }
+
+    public void AddRewardedExp(int expDop)
+    {
+        GameManager.Instance.currentPlayer.currentScore += expDop;
+        print($"AddRewardedExp expDop={expDop} GM_score={GameManager.Instance.currentPlayer.currentScore}");
+        removalUI.ViewExp(GameManager.Instance.currentPlayer.currentScore);
     }
 }

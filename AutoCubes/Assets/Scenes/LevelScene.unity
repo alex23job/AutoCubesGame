@@ -1534,6 +1534,7 @@ MonoBehaviour:
   authBtnText: {fileID: 0}
   startMenu: {fileID: 0}
   levelControl: {fileID: 809242190}
+  removalControl: {fileID: 0}
 --- !u!4 &660011577
 Transform:
   m_ObjectHideFlags: 0
@@ -1818,7 +1819,7 @@ MonoBehaviour:
   txtEndMany: {fileID: 614254041}
   txtEndCars: {fileID: 1355010570}
   txtEndOrders: {fileID: 1939057075}
-  btnAds: {fileID: 0}
+  btnAds: {fileID: 1466096083}
 --- !u!1 &762599249
 GameObject:
   m_ObjectHideFlags: 0

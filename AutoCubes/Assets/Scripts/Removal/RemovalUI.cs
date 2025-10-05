@@ -16,6 +16,8 @@ public class RemovalUI : MonoBehaviour
     [SerializeField] private Text txtEndOrders;
     [SerializeField] private Button btnAds;
 
+    private int exp = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,8 +46,15 @@ public class RemovalUI : MonoBehaviour
     public void ViewWinPanel(int orders, int exp)
     {
         txtEndOrders.text = orders.ToString();
+        this.exp = exp;
         txtExp.text = exp.ToString();
         winPanel.SetActive(true);
+    }
+
+    public void ViewExp(int exp)
+    {
+        this.exp = exp;
+        txtExp.text = exp.ToString(); 
     }
 
     public void ViewLossPanel(int orders, int maxOrders)
@@ -65,11 +74,14 @@ public class RemovalUI : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.Instance.currentPlayer.currentScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu()
     {
+        GameManager.Instance.currentPlayer.totalScore += GameManager.Instance.currentPlayer.currentScore;
+        GameManager.Instance.SaveGame();
         SceneManager.LoadScene("MainMenu");
     }
 }

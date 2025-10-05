@@ -9,7 +9,7 @@ public class RemovalBox : MonoBehaviour
     [SerializeField] private int[] numsOccupiedCells;
 
     private Vector3 pos00, posEND, posGridCube11;
-    private int[] pole3d;
+    private int[] pole3d = null;
     private int packingLayer = -1;
     private Transform grid = null;
     private RemovalControl removalControl = null;
@@ -37,6 +37,13 @@ public class RemovalBox : MonoBehaviour
     public void SetRemovalControl(RemovalControl remoControl)
     {
         removalControl = remoControl;
+    }
+
+    public void Restart()
+    {
+        countCurrentCeils = 0;
+        removalControl.TranslateOrders(countCurrentCeils, CountCeils);
+        CreatePole();
     }
 
     public bool TestPacking(GameObject order)
@@ -130,7 +137,7 @@ public class RemovalBox : MonoBehaviour
     private void CreatePole()
     {        
         int i, j, l, sz = row * col;
-        pole3d = new int[sz * layer];
+        if (pole3d == null) pole3d = new int[sz * layer];
         for (l = 0; l < layer; l++)
         {
             for (i = 0; i < row; i++)

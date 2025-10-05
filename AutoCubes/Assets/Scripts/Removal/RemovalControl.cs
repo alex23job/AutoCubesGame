@@ -50,6 +50,19 @@ public class RemovalControl : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        totalSecond = GameManager.Instance.currentPlayer.countSecondRemoval;
+        removalUI.ViewClock(totalSecond);
+        countSecond = 0;
+        removalBox.Restart();
+        foreach(GameObject order in orders)
+        {
+            Order3D order3D = order.GetComponent<Order3D>();
+            if (order3D != null) order3D.Restart();
+        }
+    }
+
     private void GenerateOrders()
     {
         int volume = removalBox.CountCeils;
@@ -64,7 +77,7 @@ public class RemovalControl : MonoBehaviour
             if ((volume - countCeils - prefabs3d[numOrder].GetComponent<Order3D>().CountCeils) < 3) continue;
             GameObject order = CreateOrder(numOrder, countOrders, (numOrder > 3) ? 2.1f : 1.6f);
             countCeils += order.GetComponent<Order3D>().CountCeils;
-            orders.Add(order);
+            //orders.Add(order);
             if (countCeils > 0.4f * volume) startOrder = 1;
             if (countCeils > 0.8f * volume) startOrder = 0;
             countOrders++;
@@ -73,7 +86,7 @@ public class RemovalControl : MonoBehaviour
         {
             GameObject order = CreateOrder(0, countOrders, 1.6f);
             countCeils++;
-            orders.Add(order);
+            //orders.Add(order);
             countOrders++;
             if (countCeils == volume) break;
         }

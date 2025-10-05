@@ -53,13 +53,15 @@ public class Order3D : MonoBehaviour
                 if (dm.magnitude > 0.2f) transform.position -= movement;
                 else
                 {
-                    transform.position = target;
+                    //transform.position = target;
+                    transform.position = startPos;
                     isMovement = false;
                 }
             }
             else
             {
-                transform.position = target;
+                //transform.position = target;
+                transform.position = startPos;
                 isMovement = false;
             }
         }
@@ -81,6 +83,7 @@ public class Order3D : MonoBehaviour
 
     private void SetIsKinematic()
     {
+        if (startPos == Vector3.zero) startPos = transform.position;
         rb.isKinematic = true;
         rb.useGravity = false;
     }
@@ -103,6 +106,15 @@ public class Order3D : MonoBehaviour
     public int[] GetShema()
     {
         return shemaOrder.GetShema();
+    }
+
+    public void Restart()
+    {
+        Vector3 delta = transform.position - startPos;
+        if (delta.magnitude < 0.1f) return;
+        target = new Vector3(transform.position.x, startPos.y, transform.position.z);
+        isMovement = true;
+        isPacking = false;
     }
 
     public void SetTarget(Vector3 tg)

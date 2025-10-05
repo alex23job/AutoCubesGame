@@ -1147,7 +1147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &603659771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4241,16 +4241,6 @@ RectTransform:
   - {fileID: 397966665}
   - {fileID: 1601321209}
   - {fileID: 333597844}
-  - {fileID: 721607266}
-  - {fileID: 1076126670}
-  - {fileID: 1295704021}
-  - {fileID: 1048502823}
-  - {fileID: 724763240}
-  - {fileID: 673683101}
-  - {fileID: 555498346}
-  - {fileID: 1213603905}
-  - {fileID: 1062838670}
-  - {fileID: 690537084}
   - {fileID: 1213984456}
   - {fileID: 1543229539}
   - {fileID: 68975496}
@@ -4261,6 +4251,16 @@ RectTransform:
   - {fileID: 980526351}
   - {fileID: 1351456520}
   - {fileID: 640517558}
+  - {fileID: 721607266}
+  - {fileID: 1076126670}
+  - {fileID: 1295704021}
+  - {fileID: 1048502823}
+  - {fileID: 724763240}
+  - {fileID: 673683101}
+  - {fileID: 555498346}
+  - {fileID: 1213603905}
+  - {fileID: 1062838670}
+  - {fileID: 690537084}
   m_Father: {fileID: 603659771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5255,14 +5255,14 @@ RectTransform:
   m_Children:
   - {fileID: 583961318}
   - {fileID: 1516391427}
-  - {fileID: 1896857780}
-  - {fileID: 617659234}
-  - {fileID: 838315533}
-  - {fileID: 1056752699}
   - {fileID: 1353020993}
   - {fileID: 677115450}
   - {fileID: 1769107741}
   - {fileID: 786741433}
+  - {fileID: 1896857780}
+  - {fileID: 617659234}
+  - {fileID: 838315533}
+  - {fileID: 1056752699}
   - {fileID: 242365685}
   m_Father: {fileID: 603659771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

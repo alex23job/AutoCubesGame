@@ -2966,8 +2966,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 851313873}
-        m_TargetAssemblyTypeName: RemovalUI, Assembly-CSharp
+      - m_Target: {fileID: 1260643335}
+        m_TargetAssemblyTypeName: RemovalControl, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:

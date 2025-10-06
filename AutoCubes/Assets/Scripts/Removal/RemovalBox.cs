@@ -49,7 +49,8 @@ public class RemovalBox : MonoBehaviour
     public bool TestPacking(GameObject order)
     {
         Vector3 ordPos = order.transform.position;
-        if (((ordPos.x > pos00.x) && (ordPos.x < posEND.x)) && ((ordPos.z < pos00.z) && (ordPos.z > posEND.z)))
+        float dopOfs = 0.5f;
+        if (((ordPos.x > pos00.x - dopOfs) && (ordPos.x < posEND.x + dopOfs)) && ((ordPos.z < pos00.z + dopOfs) && (ordPos.z > posEND.z - dopOfs)))
         {
             ordPos.x += 0.5f;ordPos.z += 0.5f;
             Vector3 delta = ordPos - posGridCube11;

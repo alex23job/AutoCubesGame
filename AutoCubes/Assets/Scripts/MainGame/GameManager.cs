@@ -55,18 +55,29 @@ public class GameManager : MonoBehaviour
         LoadYandex();
 #endif
 #if UNITY_EDITOR
-        if (File.Exists(Application.persistentDataPath
-          + "/MySaveData.dat"))
+        string filePath = Application.persistentDataPath + "/MySaveData.dat";
+        if (File.Exists(filePath))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            Debug.Log(Application.persistentDataPath + "/MySaveData.dat");
-            FileStream file =
-              File.Open(Application.persistentDataPath
-              + "/MySaveData.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            FileInfo fileInfo = new FileInfo(filePath);
+            Debug.Log($"filePath = <{filePath}>    size = {fileInfo.Length}");
+            FileStream file = File.Open(filePath, FileMode.Open);
+
+            if (fileInfo.Length > 0)
+            {
+                SaveData data = (SaveData)bf.Deserialize(file);
+                //Debug.Log(data.ToString());
+                UpdateLoadingData(data);
+            }
+            else
+            {
+                GameManager.Instance.currentPlayer = PlayerInfo.FirstGame();
+                if (mm_control != null)
+                {
+                    mm_control.ViewRecord();
+                }
+            }
             file.Close();
-            //Debug.Log(data.ToString());
-            UpdateLoadingData(data);
         }
         else
         {

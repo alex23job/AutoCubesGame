@@ -63,6 +63,17 @@ public class PlayersGarage : MonoBehaviour
         }
     }
 
+    public void DropAllPlayerCars()
+    {
+        for(int i = CountCars; i > 0; i--)
+        {
+            GameObject car = cars[i - 1];
+            cars.RemoveAt(i - 1);
+            Destroy(car);
+        }
+        cars.Clear();
+    }
+
     public void CreatePlayerCars(string csv, string sep = "#")
     {
         string[] ar = csv.Split(sep, System.StringSplitOptions.RemoveEmptyEntries);
@@ -235,11 +246,17 @@ public class PlayersGarage : MonoBehaviour
 
     public string GarageToCsvString(string sep = "#")
     {
+        if ((CountCars == 0) && (loadingCsvGarageString != "")) { return loadingCsvGarageString; }
         StringBuilder sb = new StringBuilder();
-        foreach(GameObject car in cars)
+        foreach (GameObject car in cars)
         {
-            CarPassport carPassport = car.GetComponent<CarPassport>();
-            sb.Append($"{carPassport.ToCsvString("=")}{sep}");
+            if (car != null)
+            {
+                CarPassport carPassport = car.GetComponent<CarPassport>();
+                if (carPassport != null) sb.Append($"{carPassport.ToCsvString("=")}{sep}");
+                else print("carPassport is null ???");
+            }
+            else print($"countCars={cars.Count} car is null ???");
         }
         return sb.ToString();
     }

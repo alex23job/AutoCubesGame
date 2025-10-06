@@ -70,6 +70,7 @@ public class MainMenuControl : MonoBehaviour
 
     public void LoadRemoval()
     {
+        if (PlayersGarage.Instance.CountCars > 0) PlayersGarage.Instance.DropAllPlayerCars();
         SceneManager.LoadScene("RemovalScene");
     }
 

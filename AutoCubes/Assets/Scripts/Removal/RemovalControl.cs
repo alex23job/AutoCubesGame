@@ -64,6 +64,11 @@ public class RemovalControl : MonoBehaviour
         }
     }
 
+    public void OrderUndo()
+    {
+        removalBox.Undo();
+    }
+
     private void GenerateOrders()
     {
         int volume = removalBox.CountCeils;

@@ -14,6 +14,7 @@ public class RemovalBox : MonoBehaviour
     private Transform grid = null;
     private RemovalControl removalControl = null;
     private int countCurrentCeils = 0;
+    private GameObject currentOrder = null;
 
     public int CountCeils { get { return row * col * layer - numsOccupiedCells.Length; } }
     public int CountCurrentCeils { get { return countCurrentCeils; } }
@@ -46,6 +47,23 @@ public class RemovalBox : MonoBehaviour
         CreatePole();
     }
 
+    public void Undo()
+    {
+        if (currentOrder != null)
+        {
+            Vector3 delta = currentOrder.transform.position - posGridCube11;
+            int x = Mathf.RoundToInt(delta.x + 0.5f);
+            int y = Mathf.Abs(Mathf.RoundToInt(delta.z + 0.5f));
+            //print($"Undo x={x} y={y} pos={currentOrder.transform.position} delta={delta}");
+            Order3D order3D = currentOrder.GetComponent<Order3D>();
+            UnPackingToPole(order3D.GetShema(), x, y);
+            countCurrentCeils -= order3D.CountCeils;
+            order3D.Restart();
+            removalControl.TranslateOrders(countCurrentCeils, CountCeils);
+            currentOrder = null;
+        }
+    }
+
     public bool TestPacking(GameObject order)
     {
         Vector3 ordPos = order.transform.position;
@@ -58,7 +76,7 @@ public class RemovalBox : MonoBehaviour
             int y = Mathf.Abs(Mathf.RoundToInt(delta.z));
             int[] shema = order.GetComponent<Order3D>().GetShema();
 
-            print($"in box3D posCube11={posGridCube11} ordPos={ordPos} delta={delta} x(col)={x} y(row)={y}");
+            //print($"in box3D posCube11={posGridCube11} ordPos={ordPos} delta={delta} x(col)={x} y(row)={y}");
             if (CheckPacking(shema, x, y))
             {
                 PackingToPole(shema, x, y);
@@ -69,6 +87,7 @@ public class RemovalBox : MonoBehaviour
                 order.transform.position = ordPos;
                 ordPos.y = packingLayer + 2.1f;
                 order.GetComponent<Order3D>().ResetIsKinematic(ordPos);
+                currentOrder = order;
                 if (removalControl != null && CheckFullBox())
                 {
                     removalControl.BoxIsFull(CountCeils);
@@ -121,7 +140,23 @@ public class RemovalBox : MonoBehaviour
                 pole3d[packingLayer * sz_layer + col * sy + sx] = 1;
             }
         }
-        PrintPole();
+        //PrintPole();
+    }
+
+    private void UnPackingToPole(int[] sh, int x, int y)
+    {
+        if (packingLayer == -1) return;
+        int i, sx, sy, sz_layer = row * col;
+        for (i = 0; i < sh.Length; i++)
+        {
+            if (sh[i] == 1)
+            {
+                sx = i % 4 + x - 2;
+                sy = i / 4 + y - 1;
+                pole3d[packingLayer * sz_layer + col * sy + sx] = 0;
+            }
+        }
+        //PrintPole();
     }
 
     private bool CheckFullBox()
@@ -150,7 +185,7 @@ public class RemovalBox : MonoBehaviour
                 }
             }
         }
-        PrintPole();
+        //PrintPole();
     }
 
     private bool CheckOccupied(int x, int z, int y)

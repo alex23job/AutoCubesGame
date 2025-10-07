@@ -53,16 +53,20 @@ public class Order3D : MonoBehaviour
                 if (dm.magnitude > 0.2f) transform.position -= movement;
                 else
                 {
+                    EndMovemenToTarget();
                     //transform.position = target;
-                    transform.position = startPos;
-                    isMovement = false;
+
+                    //transform.position = startPos;
+                    //isMovement = false;
                 }
             }
             else
             {
+                EndMovemenToTarget();
                 //transform.position = target;
-                transform.position = startPos;
-                isMovement = false;
+
+                //transform.position = startPos;
+                //isMovement = false;
             }
         }
 
@@ -78,7 +82,21 @@ public class Order3D : MonoBehaviour
             transform.position = figPos;
             deltaPos = mp;
         }
+    }
 
+    private void EndMovemenToTarget()
+    {
+        Vector3 delta = target - startPos;
+        if (delta.magnitude > 0.2f)
+        {
+            target = startPos;
+        }
+        else
+        {
+            //transform.position = target;
+            transform.position = startPos;
+            isMovement = false;
+        }
     }
 
     private void SetIsKinematic()

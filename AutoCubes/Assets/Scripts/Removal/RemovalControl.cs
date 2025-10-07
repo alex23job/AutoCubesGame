@@ -129,6 +129,7 @@ public class RemovalControl : MonoBehaviour
     {
         int exp = ArrBaseExp[numBox] + (1 + numBox) * (totalSecond - countSecond);
         GameManager.Instance.currentPlayer.currentScore = exp;
+        GameManager.Instance.currentPlayer.sessionGold = ArrBaseExp[numBox];
         removalUI.ViewWinPanel(maxOrders, exp);
     }
 

@@ -81,6 +81,7 @@ public class RemovalUI : MonoBehaviour
     public void LoadMenu()
     {
         GameManager.Instance.currentPlayer.totalScore += GameManager.Instance.currentPlayer.currentScore;
+        GameManager.Instance.currentPlayer.totalGold += GameManager.Instance.currentPlayer.sessionGold;
         GameManager.Instance.SaveGame();
         SceneManager.LoadScene("MainMenu");
     }

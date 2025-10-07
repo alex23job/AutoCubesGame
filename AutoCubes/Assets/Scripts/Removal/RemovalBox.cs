@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -15,6 +17,7 @@ public class RemovalBox : MonoBehaviour
     private RemovalControl removalControl = null;
     private int countCurrentCeils = 0;
     private GameObject currentOrder = null;
+    private List<GameObject> undoOrders = new List<GameObject>();
 
     public int CountCeils { get { return row * col * layer - numsOccupiedCells.Length; } }
     public int CountCurrentCeils { get { return countCurrentCeils; } }
@@ -32,7 +35,7 @@ public class RemovalBox : MonoBehaviour
         posEND.z -= row;
         posGridCube11 = grid.GetChild(0).position;
         CreatePole();
-        removalControl.TranslateOrders(countCurrentCeils, CountCeils);
+        removalControl.TranslateOrders(countCurrentCeils, CountCeils, false);
     }
 
     public void SetRemovalControl(RemovalControl remoControl)
@@ -43,12 +46,18 @@ public class RemovalBox : MonoBehaviour
     public void Restart()
     {
         countCurrentCeils = 0;
-        removalControl.TranslateOrders(countCurrentCeils, CountCeils);
+        removalControl.TranslateOrders(countCurrentCeils, CountCeils, false);
+        undoOrders.Clear();
+        currentOrder = null;
         CreatePole();
     }
 
     public void Undo()
     {
+        if (currentOrder == null && undoOrders.Count > 0) 
+        {
+            currentOrder = undoOrders[undoOrders.Count - 1];            
+        }
         if (currentOrder != null)
         {
             Vector3 delta = currentOrder.transform.position - posGridCube11;
@@ -61,7 +70,9 @@ public class RemovalBox : MonoBehaviour
             order3D.Restart();
             removalControl.TranslateOrders(countCurrentCeils, CountCeils);
             currentOrder = null;
+            undoOrders.RemoveAt(undoOrders.Count - 1);
         }
+        if (undoOrders.Count == 0) removalControl.ResetUndoButton();
     }
 
     public bool TestPacking(GameObject order)
@@ -88,6 +99,7 @@ public class RemovalBox : MonoBehaviour
                 ordPos.y = packingLayer + 2.1f;
                 order.GetComponent<Order3D>().ResetIsKinematic(ordPos);
                 currentOrder = order;
+                undoOrders.Add(currentOrder);
                 if (removalControl != null && CheckFullBox())
                 {
                     removalControl.BoxIsFull(CountCeils);

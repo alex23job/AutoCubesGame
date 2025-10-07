@@ -191,7 +191,7 @@ public class Order3D : MonoBehaviour
                 }
                 else
                 {
-                    print($"OnMouseUp   isPacking={isPacking}");
+                    //print($"OnMouseUp   isPacking={isPacking}");
                     if (isPacking == false) transform.position = startPos;
                 }
                 isMove = false;

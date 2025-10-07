@@ -31,6 +31,7 @@ public class RemovalControl : MonoBehaviour
         removalBox = box.GetComponent<RemovalBox>();
         removalBox.SetRemovalControl(gameObject.GetComponent<RemovalControl>());
         removalUI.ViewClock(totalSecond);
+        removalUI.ChangeBtnUndoInteractable(false);
         GenerateOrders();
     }
 
@@ -125,9 +126,15 @@ public class RemovalControl : MonoBehaviour
         return order;
     }
 
-    public void TranslateOrders(int countOrders, int maxOrders)
+    public void TranslateOrders(int countOrders, int maxOrders, bool isUndo = true)
     {
+        removalUI.ChangeBtnUndoInteractable(isUndo);
         removalUI.ViewOrders(countOrders, maxOrders);
+    }
+
+    public void ResetUndoButton()
+    {
+        removalUI.ChangeBtnUndoInteractable(false);
     }
 
     public void BoxIsFull(int maxOrders)

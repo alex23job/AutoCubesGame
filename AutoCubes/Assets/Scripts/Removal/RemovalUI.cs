@@ -16,6 +16,8 @@ public class RemovalUI : MonoBehaviour
     [SerializeField] private Text txtEndOrders;
     [SerializeField] private Button btnAds;
 
+    [SerializeField] private Button btnUndo;
+
     private int exp = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,12 +25,18 @@ public class RemovalUI : MonoBehaviour
     {
         winPanel.SetActive(false);
         lossPanel.SetActive(false);
+        btnUndo.interactable = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ChangeBtnUndoInteractable(bool value)
+    {
+        btnUndo.interactable = value;
     }
 
     public void ViewClock(int value)

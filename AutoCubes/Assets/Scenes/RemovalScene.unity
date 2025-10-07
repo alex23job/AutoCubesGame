@@ -1547,6 +1547,7 @@ MonoBehaviour:
   txtExp: {fileID: 1124776681}
   txtEndOrders: {fileID: 630093281}
   btnAds: {fileID: 531783361}
+  btnUndo: {fileID: 1544742243}
 --- !u!114 &851313874
 MonoBehaviour:
   m_ObjectHideFlags: 0

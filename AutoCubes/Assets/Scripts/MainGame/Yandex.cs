@@ -139,9 +139,9 @@ public class Yandex : MonoBehaviour
         //soundFone.Pause();
         //btnShowAdw.gameObject.SetActive(false);
 
-        AddRewardExp(GameManager.Instance.currentPlayer.sessionScore); //  для теста пока без WebGL 2x exp
+        AddRewardExp(GameManager.Instance.currentPlayer.currentScore); //  для теста пока без WebGL 2x exp
 #if UNITY_WEBGL
-        AddExpExtern(GameManager.Instance.currentPlayer.sessionScore);
+        AddExpExtern(GameManager.Instance.currentPlayer.currentScore);
 #endif
         GameStop();
     }

@@ -11,14 +11,19 @@ public class InterText : MonoBehaviour
     void Start()
     {
         Text txt = GetComponent<Text>();
-        if (Language.Instance.CurrentLanguage == "ru")
+        if (Language.Instance != null)
         {
-            txt.text = ru;
+            if (Language.Instance.CurrentLanguage == "ru")
+            {
+                txt.text = ru;
+            }
+            else
+            {
+                txt.text = en;
+            }
         }
-        else
-        {
-            txt.text = en;
-        }
+        else txt.text = ru;
+
         Invoke("UpdateLanguage", 0.5f);
     }
 

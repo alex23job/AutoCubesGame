@@ -1933,6 +1933,7 @@ MonoBehaviour:
   txtEndCars: {fileID: 1355010570}
   txtEndOrders: {fileID: 1939057075}
   btnAds: {fileID: 1466096083}
+  imgHelpControl: {fileID: 1311063378}
 --- !u!1 &707969619
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,7 +3571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.66164064, b: 1, a: 1}
+  m_Color: {r: 0.4198113, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -3229,6 +3229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdc808e147c26a4e8d05e3e8b68e2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imgHelpControl: {fileID: 254201885}
   foneStoreButtons:
   - {fileID: 1213984457}
   - {fileID: 1543229540}

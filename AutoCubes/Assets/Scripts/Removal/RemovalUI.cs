@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class RemovalUI : MonoBehaviour
 {
+    [SerializeField] private PeriodicColorChange imgHelpControl;
     [SerializeField] private Text txtClock;
     [SerializeField] private Text txtOrders;
 
@@ -20,6 +21,9 @@ public class RemovalUI : MonoBehaviour
 
     private int exp = 0;
 
+    private bool isHelp = false;
+    private float timer = 2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +35,22 @@ public class RemovalUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isHelp == false)
+        {
+            if (timer > 0) timer -= Time.deltaTime;
+            else
+            {
+                isHelp = true;
+                imgHelpControl.SetChange(true);
+            }
+        }
+    }
+
+    private void ResetImgHelpColor()
+    {
+        isHelp = false;
+        timer = 3f;
+        imgHelpControl.SetChange(false);
     }
 
     public void ChangeBtnUndoInteractable(bool value)
@@ -48,14 +67,14 @@ public class RemovalUI : MonoBehaviour
 
     public void ViewOrders(int orders, int maxOrders)
     {
+        ResetImgHelpColor();
         txtOrders.text = $"{orders}/{maxOrders}";
     }
 
     public void ViewWinPanel(int orders, int exp)
     {
         txtEndOrders.text = orders.ToString();
-        this.exp = exp;
-        txtExp.text = exp.ToString();
+        ViewExp(exp);
         winPanel.SetActive(true);
     }
 

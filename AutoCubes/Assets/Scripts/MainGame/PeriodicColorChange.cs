@@ -14,7 +14,12 @@ public class PeriodicColorChange : MonoBehaviour
     void Start()
     {
         imgColor = GetComponent<Image>().color;
-        //print($"r={imgColor.r} g={imgColor.g} b={imgColor.b}");
+        print($"r={imgColor.r} g={imgColor.g} b={imgColor.b}");
+        if (imgColor.r < 0.1f) imgColor.r = 0.3f;
+        if (imgColor.g < 0.1f) imgColor.g = 0.7f;
+        if (imgColor.b < 0.1f) imgColor.b = 0.85f;
+        imgColor.a = 1f;
+        GetComponent<Image>().color = imgColor;
         //SetChange(true);
     }
 
@@ -40,7 +45,7 @@ public class PeriodicColorChange : MonoBehaviour
 
     private void ChangeColor()
     {
-        Color color = new Color(imgColor.r - 0.1f, imgColor.g - 0.1f, imgColor.b - 0.1f);
+        Color color = new Color(imgColor.r - 0.1f, imgColor.g - 0.1f, imgColor.b - 0.1f, 1f);
         color.r += currentIndex * 0.01f;
         color.g += currentIndex * 0.01f;
         color.b += currentIndex * 0.01f;

@@ -1785,6 +1785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f877bc81f9e4040bb058a5d6f420d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imgHelpControl: {fileID: 444168380}
   txtClock: {fileID: 417212365}
   txtOrders: {fileID: 839157610}
   lossPanel: {fileID: 91448675}

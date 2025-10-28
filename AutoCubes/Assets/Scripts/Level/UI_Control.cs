@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,9 +18,13 @@ public class UI_Control : MonoBehaviour
     [SerializeField] private Text txtEndOrders;
 
     [SerializeField] private Button btnAds;
+    [SerializeField] private PeriodicColorChange imgHelpControl;
 
     private Color colorRed = new Color(0.8f, 0, 0);
     private Color colorGreen = new Color(0, 0.9f, 0);
+
+    private bool isHelp = false;
+    private float timer = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +35,25 @@ public class UI_Control : MonoBehaviour
         ViewMany(0);
         ViewCars(0, 10);
         ViewOrders(0, 100);
+    }
+
+    private void Update()
+    {
+        if (isHelp == false)
+        {
+            if (timer > 0) timer -= Time.deltaTime;
+            else
+            {
+                isHelp = true;
+                imgHelpControl.SetChange(true);
+            }
+        }
+    }
+    private void ResetImgHelpColor()
+    {
+        isHelp = false;
+        timer = 3f;
+        imgHelpControl.SetChange(false);
     }
 
     public void ViewExp(int exp)
@@ -59,6 +83,7 @@ public class UI_Control : MonoBehaviour
 
     public void ViewOrders(int orders, int maxOrders)
     {
+        ResetImgHelpColor();
         txtOrders.color = (orders < maxOrders) ? colorRed : colorGreen;
         txtOrders.text = $"{orders}/{maxOrders}";
         txtEndOrders.text = $"{orders}/{maxOrders}";

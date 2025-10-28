@@ -3530,6 +3530,7 @@ GameObject:
   - component: {fileID: 1311063375}
   - component: {fileID: 1311063377}
   - component: {fileID: 1311063376}
+  - component: {fileID: 1311063378}
   m_Layer: 5
   m_Name: ImgMenu
   m_TagString: Untagged
@@ -3594,6 +3595,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311063374}
   m_CullTransparentMesh: 1
+--- !u!114 &1311063378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311063374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318a61320ffd42348bab0094d6402906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PeriodicColorChange
+  ChangeDelay: 0.05
 --- !u!1 &1355010568
 GameObject:
   m_ObjectHideFlags: 0

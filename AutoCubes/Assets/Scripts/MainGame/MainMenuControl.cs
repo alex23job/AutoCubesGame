@@ -11,6 +11,7 @@ public class MainMenuControl : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void GetLeaderboardEntries();
 
+    [SerializeField] private PeriodicColorChange imgHelpControl;
     [SerializeField] private Image[] foneStoreButtons;
     [SerializeField] private Image[] foneRemovalButtons;
     [SerializeField] private Button[] storeLevelButtons;
@@ -28,6 +29,8 @@ public class MainMenuControl : MonoBehaviour
 
     private float timer = 5f;
     private bool isLoad = false;
+    private bool isHelp = false;
+    private bool isSelect = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +62,19 @@ public class MainMenuControl : MonoBehaviour
                 timer = 5f;
             }
         }
+
+        if (isSelect)
+        {
+            if (isHelp == false)
+            {
+                if (timer > 0) timer -= Time.deltaTime;
+                else
+                {
+                    isHelp = true;
+                    imgHelpControl.SetChange(true);
+                }
+            }
+        }
     }
 
     public void LoadComplete()
@@ -77,6 +93,8 @@ public class MainMenuControl : MonoBehaviour
     public void ViewSelectGamePanel()
     {
         int i;
+        isSelect = true; imgHelpControl.SetChange(false);
+        isHelp = false; timer = 3f;
         GameManager.Instance.currentPlayer.currentLevel = GameManager.Instance.currentPlayer.maxLevel;
         for (i = 0; i < foneStoreButtons.Length; i++)
         {
@@ -102,6 +120,8 @@ public class MainMenuControl : MonoBehaviour
 
     public void OnBtnLevelClick(int lvl)
     {
+        isHelp = false; timer = 2f;
+        imgHelpControl.SetChange(false);
         foneStoreButtons[GameManager.Instance.currentPlayer.currentLevel - 1].gameObject.SetActive(false);
         GameManager.Instance.currentPlayer.currentLevel = lvl;
         foneStoreButtons[GameManager.Instance.currentPlayer.currentLevel - 1].gameObject.SetActive(true);
@@ -109,6 +129,8 @@ public class MainMenuControl : MonoBehaviour
 
     public void OnBtnRemovalClick(int numBox)
     {
+        isHelp = false; timer = 2f;
+        imgHelpControl.SetChange(false);
         foneRemovalButtons[GameManager.Instance.currentPlayer.numBoxRemoval].gameObject.SetActive(false);
         GameManager.Instance.currentPlayer.numBoxRemoval = numBox;
         GameManager.Instance.currentPlayer.countSecondRemoval = 150 + numBox * 30;
@@ -117,22 +139,26 @@ public class MainMenuControl : MonoBehaviour
 
     public void LoadLevel()
     {
+        isSelect = false;
         SceneManager.LoadScene("LevelScene");
     }
 
     public void LoadRemoval()
     {
+        isSelect = false;
         if (PlayersGarage.Instance.CountCars > 0) PlayersGarage.Instance.DropAllPlayerCars();
         SceneManager.LoadScene("RemovalScene");
     }
 
     public void LoadGarage()
     {
+        isSelect = false;
         SceneManager.LoadScene("GaragScene");
     }
 
     public void LoadAutoShow()
     {
+        isSelect = false;
         SceneManager.LoadScene("AutoShowScene");
     }
 

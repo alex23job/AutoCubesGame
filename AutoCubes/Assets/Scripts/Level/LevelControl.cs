@@ -36,7 +36,7 @@ public class LevelControl : MonoBehaviour
             clocks[i].GetComponent<ClockControl>().SetNumPoint(i);
             clocks[i].SetActive(false);
         }
-        int countGarageCars = PlayersGarage.Instance.CountCars;
+        int countGarageCars = PlayersGarage.Instance.CountCarPassports;
         for(i = 0;i < terminals.Length; i++)
         {
             terminals[i].GetComponent<TerminalControl>().ButtonInteractable(i + 1 < countGarageCars);
@@ -178,7 +178,8 @@ public class LevelControl : MonoBehaviour
             GameManager.Instance.currentPlayer.LevelExpAndManyUpdate();
             GameManager.Instance.currentPlayer.LevelComplete();
             GameManager.Instance.SaveGame();
-            PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.GarageToCsvString());
+            //PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.GarageToCsvString());
+            //PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.PassportsToCsvString());
             ui_Control.ViewEndLevelPanel();
         }
         SpawnOrder();

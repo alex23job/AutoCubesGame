@@ -22,4 +22,13 @@ public class CarInfo : MonoBehaviour
     {
         this.carID = id;
     }
+
+    public CarInfo(CarInfo info)
+    {
+        this.carID = info.carID;
+        this.offsetX = info.offsetX;
+        this.offsetY = info.offsetY;
+        this.priceMult = info.priceMult;
+        this.termo = info.termo;   
+    }
 }

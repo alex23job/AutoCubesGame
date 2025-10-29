@@ -48,7 +48,7 @@ public class BoxTrigger : MonoBehaviour
                 else pole[i * col + j] = 0;
             }
         }
-        PrintPole();
+        //PrintPole();
     }
 
     private void PrintPole()
@@ -167,7 +167,7 @@ public class BoxTrigger : MonoBehaviour
                 pole[col * sy + sx] = 1;
             }
         }
-        PrintPole();
+        //PrintPole();
     }
 
     public int GetFullPercent()

@@ -111,7 +111,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PlayersGarage.Instance.SetGarageCsvString(data.csvGarage);
+            PlayersGarage.Instance.CreateAllPassports(data.csvGarage);
+            //PlayersGarage.Instance.SetGarageCsvString(data.csvGarage);
         }
 
         GameManager.Instance.currentPlayer.isHintView = data.isHints;
@@ -121,7 +122,8 @@ public class GameManager : MonoBehaviour
         GameManager.Instance.currentPlayer.volumeEffects = data.volEffects;
 
 
-        Debug.Log("Game data loaded! Score=" + GameManager.Instance.currentPlayer.totalScore.ToString() + "  Gold=" + GameManager.Instance.currentPlayer.totalGold.ToString());
+        //Debug.Log("Game data loaded! Score=" + GameManager.Instance.currentPlayer.totalScore.ToString() + "  Gold=" + GameManager.Instance.currentPlayer.totalGold.ToString());
+        Debug.Log($"Game data loaded! Score={GameManager.Instance.currentPlayer.totalScore}  Gold={GameManager.Instance.currentPlayer.totalGold}  garageStr=<{data.csvGarage}>");
         //Debug.Log($"Game data loaded! Score={GameManager.Instance.currentPlayer.totalScore} Pos={GameManager.Instance.currentPlayer.oldPosition}");
 
         if (mm_control != null)
@@ -148,7 +150,8 @@ public class GameManager : MonoBehaviour
         data.scene = GameManager.Instance.currentPlayer.nameOldScene;
         data.posAndRot = GameManager.Instance.currentPlayer.PosAndRotToCsvString();
 
-        data.csvGarage = PlayersGarage.Instance.GarageToCsvString();
+        //data.csvGarage = PlayersGarage.Instance.GarageToCsvString();
+        data.csvGarage = PlayersGarage.Instance.PassportsToCsvString();
         //data.csvInventory = GameManager.Instance.currentPlayer.inventory.ToCsvString();
 
         data.isHints = GameManager.Instance.currentPlayer.isHintView;

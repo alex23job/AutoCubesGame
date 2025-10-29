@@ -80,7 +80,7 @@ public class AutoShowControl : MonoBehaviour
     public void OnButtonBuyClick()
     {
         CarPassport carPassport = transform.GetChild(currentViewCar + 1).gameObject.GetComponent<CarPassport>();
-        GameManager.Instance.currentPlayer.totalGold -= carPassport.PriceCar;
+        //GameManager.Instance.currentPlayer.totalGold -= carPassport.PriceCar;
         if (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold)
         {
             btnBuy.interactable = true;

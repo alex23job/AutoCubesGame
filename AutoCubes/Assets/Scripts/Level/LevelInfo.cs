@@ -79,6 +79,10 @@ public class LevelInfo
 
     public void ViewStartCarsAndOrders(UI_Control ui_Control)
     {
+        countCars = 0;
+        countOrders = 0;
+        countMany = 0;
+        countExp = 0;
         ui_Control.ViewCars(countCars, maxCars);
         ui_Control.ViewOrders(countOrders, maxOrders);
     }

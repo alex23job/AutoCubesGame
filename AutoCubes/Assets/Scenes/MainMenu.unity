@@ -3427,8 +3427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008cb7f729878df41914f8bb159a1171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ru: "\u0421\u043F\u0435\u0446 \u043F\u043E \u0443\u043F\u0430\u043A\u043E\u0432\u043A\u0435"
-  en: Packaging Specialist
+  ru: "\u0421\u043F\u0435\u0446 \u043F\u043E \u043F\u043E\u0433\u0440\u0443\u0437\u043A\u0435"
+  en: Loading specialist
 --- !u!1 &608291463
 GameObject:
   m_ObjectHideFlags: 0
@@ -5438,6 +5438,7 @@ GameObject:
   - component: {fileID: 749211137}
   - component: {fileID: 749211136}
   - component: {fileID: 749211135}
+  - component: {fileID: 749211138}
   m_Layer: 5
   m_Name: ButtonBonus
   m_TagString: Untagged
@@ -5536,7 +5537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4009434, g: 1, b: 0.80199087, a: 1}
+  m_Color: {r: 0.33045566, g: 0.8867924, b: 0.704983, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5561,6 +5562,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749211133}
   m_CullTransparentMesh: 1
+--- !u!114 &749211138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749211133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318a61320ffd42348bab0094d6402906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PeriodicColorChange
+  ChangeDelay: 0.05
 --- !u!1 &775456891
 GameObject:
   m_ObjectHideFlags: 0
@@ -9240,6 +9254,7 @@ GameObject:
   - component: {fileID: 1215541636}
   - component: {fileID: 1215541635}
   - component: {fileID: 1215541634}
+  - component: {fileID: 1215541637}
   m_Layer: 5
   m_Name: ButtonLevel
   m_TagString: Untagged
@@ -9361,6 +9376,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215541632}
   m_CullTransparentMesh: 1
+--- !u!114 &1215541637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215541632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318a61320ffd42348bab0094d6402906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PeriodicColorChange
+  ChangeDelay: 0.05
 --- !u!1 &1253305425
 GameObject:
   m_ObjectHideFlags: 0

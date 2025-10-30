@@ -1593,6 +1593,7 @@ MonoBehaviour:
   - {fileID: 685997398}
   btnAccept: {fileID: 749211135}
   imgBonus: {fileID: 2040879041}
+  menuControl: {fileID: 644371618}
   bonuses:
   - type: 0
     value: +250
@@ -13796,7 +13797,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 01:35:27
+  m_Text: 00:00:00
 --- !u!222 &1811400174
 CanvasRenderer:
   m_ObjectHideFlags: 0

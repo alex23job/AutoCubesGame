@@ -104,6 +104,10 @@ public class DailyBonusManager : MonoBehaviour
             }
         }
         ViewCurrentBonus();
+        if (btnAccept.interactable)
+        {
+            btnAccept.GetComponent<PeriodicColorChange>().SetChange(true);
+        }
     }
 
     public void TryCollectDailyBonus()
@@ -174,6 +178,7 @@ public class DailyBonusManager : MonoBehaviour
     public void OnButtonAcceptBonusClick()
     {
         btnAccept.interactable = false;
+        btnAccept.GetComponent<PeriodicColorChange>().SetChange(false);
         ProcessBonus(bonuses[currentBonusIndex]);
         //currentBonusIndex = (currentBonusIndex + 1) % bonuses.Length;
         //ViewCurrentBonus();

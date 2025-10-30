@@ -115,6 +115,9 @@ public class GameManager : MonoBehaviour
             //PlayersGarage.Instance.SetGarageCsvString(data.csvGarage);
         }
 
+        GameManager.Instance.currentPlayer.numberBonusDay = data.currentBonusDay;
+        GameManager.Instance.currentPlayer.SetAcceptBonusTime(data.bonusTime);
+
         GameManager.Instance.currentPlayer.isHintView = data.isHints;
         GameManager.Instance.currentPlayer.isSoundFone = data.isFone;
         GameManager.Instance.currentPlayer.isSoundEffects = data.isEffects;
@@ -146,6 +149,9 @@ public class GameManager : MonoBehaviour
         data.score = GameManager.Instance.currentPlayer.totalScore;
         data.gold = GameManager.Instance.currentPlayer.totalGold;
         data.level = GameManager.Instance.currentPlayer.maxLevel;
+
+        data.currentBonusDay = GameManager.Instance.currentPlayer.numberBonusDay;
+        data.bonusTime = GameManager.Instance.currentPlayer.AcceptBonusTimeToString();
 
         data.scene = GameManager.Instance.currentPlayer.nameOldScene;
         data.posAndRot = GameManager.Instance.currentPlayer.PosAndRotToCsvString();
@@ -188,6 +194,9 @@ public class PlayerInfo
     public int currentLevel = 1;
     public int numBoxRemoval = 0;
     public int countSecondRemoval = 300;
+
+    public int numberBonusDay = 0;
+    public DateTime acceptBonusTime = DateTime.Now;
 
     public string nameOldScene = "";
     public Vector3 oldPosition = Vector3.zero;
@@ -282,6 +291,29 @@ public class PlayerInfo
         }
         return false;
     }
+
+    public void SetAcceptBonusTime(string strTime)
+    {
+        if (strTime != null && strTime != "")
+        {
+            Debug.Log($"strTime=<{strTime}>");
+            string[] ar = strTime.Split(":", StringSplitOptions.RemoveEmptyEntries);
+            if (ar.Length >= 2)
+            {
+                if ((int.TryParse(ar[0], out int day)) && (int.TryParse(ar[1], out int month)) && (int.TryParse(ar[2], out int year)))
+                {
+                    acceptBonusTime = new DateTime(year, month, day);
+                    return;
+                }
+            }
+        }
+        acceptBonusTime = DateTime.Now;
+    }
+
+    public string AcceptBonusTimeToString()
+    {
+        return $"{acceptBonusTime.Day:00}:{acceptBonusTime.Month:00}:{acceptBonusTime.Year:0000}";
+    }
 }
 
 [Serializable]
@@ -293,6 +325,8 @@ public class SaveData
     public string scene = "";
     public string posAndRot = "";
     public string csvGarage = "";
+    public int currentBonusDay = 0;
+    public string bonusTime = "";
     public string csvInventory = "";
 
     public bool isFone;

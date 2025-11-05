@@ -12,11 +12,13 @@ public class RemovalControl : MonoBehaviour
     private RemovalBox removalBox = null;
     private List<GameObject> orders = new List<GameObject>();
     private int numBox = -1;
-    private float maxX = 8.5f, minX = -8.5f;
+    private float maxX = 8.5f, minX = -8.5f, beginZ = 4.5f;
     private float posX = -8.5f, posZ = 4.5f;
     private float timer = 1f;
     private int countSecond = 0;
     private int totalSecond = 300;
+    private float[] ofsetZ = new float[5] { 0, -7.5f, -10f, -2.5f, -5f};
+    private int indexZ = 0;
 
     private int[] ArrBaseExp = { 100, 150, 200, 250};
 
@@ -72,21 +74,28 @@ public class RemovalControl : MonoBehaviour
 
     private void GenerateOrders()
     {
+        /*if (numBox > 1)
+        {
+            minX -= 0.3f;
+            maxX += 0.3f;
+            posX = minX;
+        }*/
         int volume = removalBox.CountCeils;
         int countCeils = 0;
         int numOrder = -1, countOrders = 0;
-        int startOrder = 2;
+        int startOrder = 6;
         
         orders.Clear();
         while (volume - countCeils > 3)
         {
             numOrder = Random.Range(startOrder, prefabs3d.Length);
+            if ((countCeils < 0.5f * volume) && (prefabs3d[numOrder].GetComponent<Order3D>().CountCeils < 4)) continue;
             if ((volume - countCeils - prefabs3d[numOrder].GetComponent<Order3D>().CountCeils) < 3) continue;
             GameObject order = CreateOrder(numOrder, countOrders, (numOrder > 3) ? 2.1f : 1.6f);
             countCeils += order.GetComponent<Order3D>().CountCeils;
             //orders.Add(order);
-            if (countCeils > 0.4f * volume) startOrder = 1;
-            if (countCeils > 0.8f * volume) startOrder = 0;
+            if (countCeils > 0.5f * volume) startOrder = 1;
+            if (countCeils > 0.7f * volume) startOrder = 0;
             countOrders++;
         }
         for (int i = 0; i < 3; i++)
@@ -106,10 +115,14 @@ public class RemovalControl : MonoBehaviour
         GameObject order = Instantiate(prefabs3d[numOrder]);
         Order3D order3D = order.GetComponent<Order3D>();
         float dx = order3D.CX / 2.0f;
+        if (numOrder == 0) dopX = 1.1f;
         if (posX + dx > maxX) 
         {
             posX = minX;
-            posZ -= 2.5f; 
+            //posZ -= 2.5f; 
+            indexZ++;
+            if (indexZ >= ofsetZ.Length) removalUI.Restart();
+            posZ = beginZ + ofsetZ[indexZ];
         }
         if (posZ < 3f && posZ > -1f)
         {

@@ -1873,9 +1873,9 @@ RectTransform:
   - {fileID: 242730098}
   - {fileID: 1047367955}
   - {fileID: 1510219993}
+  - {fileID: 1888089174}
   - {fileID: 1290250586}
   - {fileID: 91448676}
-  - {fileID: 1888089174}
   - {fileID: 715428003}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

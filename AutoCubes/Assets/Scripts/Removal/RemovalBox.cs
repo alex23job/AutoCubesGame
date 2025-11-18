@@ -62,7 +62,8 @@ public class RemovalBox : MonoBehaviour
         {
             Vector3 delta = currentOrder.transform.position - posGridCube11;
             int x = Mathf.RoundToInt(delta.x + 0.5f);
-            int y = Mathf.Abs(Mathf.RoundToInt(delta.z + 0.5f));
+            //int y = Mathf.Abs(Mathf.RoundToInt(delta.z + 0.5f));
+            int y = -1 * Mathf.RoundToInt(delta.z + 0.5f);
             //print($"Undo x={x} y={y} pos={currentOrder.transform.position} delta={delta}");
             Order3D order3D = currentOrder.GetComponent<Order3D>();
             UnPackingToPole(order3D.GetShema(), x, y);
@@ -83,8 +84,10 @@ public class RemovalBox : MonoBehaviour
         {
             ordPos.x += 0.5f;ordPos.z += 0.5f;
             Vector3 delta = ordPos - posGridCube11;
+            //if (delta.z > 0.49f) return false;  //  для поворота на 180 фигур из одной линии выбрасывает на исходную !
             int x = Mathf.RoundToInt(delta.x);
-            int y = Mathf.Abs(Mathf.RoundToInt(delta.z));
+            //int y = Mathf.Abs(Mathf.RoundToInt(delta.z));
+            int y = -1 * Mathf.RoundToInt(delta.z);
             int[] shema = order.GetComponent<Order3D>().GetShema();
 
             //print($"in box3D posCube11={posGridCube11} ordPos={ordPos} delta={delta} x(col)={x} y(row)={y}");

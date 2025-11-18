@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
+        if (GameManager.Instance.currentPlayer.totalScore == 0) return;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath
           + "/MySaveData.dat");

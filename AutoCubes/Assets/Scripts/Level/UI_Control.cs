@@ -104,11 +104,13 @@ public class UI_Control : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        PlayersGarage.Instance.ClearAllUsing();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void Restart()
     {
+        PlayersGarage.Instance.ClearAllUsing();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

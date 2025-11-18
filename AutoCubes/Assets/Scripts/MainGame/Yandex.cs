@@ -106,7 +106,7 @@ public class Yandex : MonoBehaviour
 
     public void ClickTerminalButton(int num)
     {
-        AddLiveAdw(num); //  для теста пока без WebGL
+        //AddLiveAdw(num); //  для теста пока без WebGL
 #if UNITY_WEBGL
         AddLiveExtern(num);
 #endif
@@ -123,7 +123,7 @@ public class Yandex : MonoBehaviour
         //soundFone.Pause();
         //btnShowAdw.gameObject.SetActive(false);
 
-        AddRewardBonus(GameManager.Instance.currentPlayer.sessionGold); //  для теста пока без WebGL
+        //AddRewardBonus(GameManager.Instance.currentPlayer.sessionGold); //  для теста пока без WebGL
 #if UNITY_WEBGL
         AddBonusExtern(GameManager.Instance.currentPlayer.sessionGold);
 #endif
@@ -139,7 +139,7 @@ public class Yandex : MonoBehaviour
         //soundFone.Pause();
         //btnShowAdw.gameObject.SetActive(false);
 
-        AddRewardExp(GameManager.Instance.currentPlayer.currentScore); //  для теста пока без WebGL 2x exp
+        //AddRewardExp(GameManager.Instance.currentPlayer.currentScore); //  для теста пока без WebGL 2x exp
 #if UNITY_WEBGL
         AddExpExtern(GameManager.Instance.currentPlayer.currentScore);
 #endif

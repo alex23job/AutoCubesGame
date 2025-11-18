@@ -33,7 +33,7 @@ public class Language : MonoBehaviour
         CurrentLanguage = GetLang();
 #endif
         //CurrentLanguage = "ru";
-        CurrentLanguage = "en";
+        //urrentLanguage = "en";
     }
 }
 

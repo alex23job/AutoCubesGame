@@ -67,7 +67,7 @@ public class PlayersGarage : MonoBehaviour
                 carPassports.Add(carPassport);
             }
         }
-        print($"CreateAllPassports countPassports=<{carPassports.Count}>");
+        //print($"CreateAllPassports countPassports=<{carPassports.Count}>");
     }
 
     public void CreateAllPlayerCars()
@@ -176,6 +176,20 @@ public class PlayersGarage : MonoBehaviour
         return "";*/
     }
 
+    public void ClearAllUsing()
+    {
+        if (CountCarPassports > 0)
+        {
+            foreach (var carPassport in carPassports)
+            {
+                if (carPassport != null)
+                {
+                    carPassport.IsUsing = false;
+                }
+            }
+        }
+    }
+
     /*public GameObject GetNextCar(bool isFree = false)
     {
         if (CountCars > 0)
@@ -235,13 +249,13 @@ public class PlayersGarage : MonoBehaviour
     public void AddCar(int carID)
     {
         GameObject prefabCar = PrefabsPak.Instance.GetCarPrefab(carID - 1);
-        print($"1) AddCar prefabCar=<{prefabCar}>");
+        //print($"1) AddCar prefabCar=<{prefabCar}>");
         CarPassport passport = prefabCar.GetComponent<CarPassport>();
         CarPassportInfo carPassport = new CarPassportInfo(carID, -1, passport.RemainingTrips);
         carPassport.SetPassportID(GenerateNextPassportCarID());
         carPassports.Add(carPassport);
         loadingCsvGarageString = PassportsToCsvString("#");
-        print($"3) AddCar CountCarPassports={CountCarPassports} CarID={carID} car={prefabCar} csv={loadingCsvGarageString}");
+        //print($"3) AddCar CountCarPassports={CountCarPassports} CarID={carID} car={prefabCar} csv={loadingCsvGarageString}");
         /*if (CountCars == 0)
         {
             CreateAllPlayerCars();
@@ -267,16 +281,16 @@ public class PlayersGarage : MonoBehaviour
         if (CountCarPassports > 0)
         {
             int maxNum = 0;
-            print($"1) GenerateNextPassportCarID maxnum={maxNum} passports=<{CountCarPassports}>");
+            //print($"1) GenerateNextPassportCarID maxnum={maxNum} passports=<{CountCarPassports}>");
             foreach (var carPassport in carPassports)
             {
-                print($"2) GenerateNextPassportCarID maxnum={maxNum} PassportCarID=<{carPassport.PassportID}>");
+                //print($"2) GenerateNextPassportCarID maxnum={maxNum} PassportCarID=<{carPassport.PassportID}>");
                 if (carPassport == null) continue;
                 //CarPassport carPassport = car.GetComponent<CarPassport>();
                 if (carPassport != null)
                 {
                     if (carPassport.PassportID > maxNum) maxNum = carPassport.PassportID;
-                    print($"3) GenerateNextPassportCarID maxnum={maxNum} >= PassportCarID=<{carPassport.PassportID}>");
+                    //print($"3) GenerateNextPassportCarID maxnum={maxNum} >= PassportCarID=<{carPassport.PassportID}>");
                 }
             }
             return maxNum + 1;
@@ -347,7 +361,7 @@ public class PlayersGarage : MonoBehaviour
             {
                 if (carPassport != null)
                 {
-                    print($"RepairCar passportID={passportID} carPassportID={carPassport.PassportID} maxTrips={maxTrips}");
+                    //print($"RepairCar passportID={passportID} carPassportID={carPassport.PassportID} maxTrips={maxTrips}");
                     if (carPassport.PassportID == passportID)
                     {
                         carPassport.SetRemainingTrips(maxTrips);

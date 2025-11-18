@@ -41,7 +41,7 @@ public class LevelControl : MonoBehaviour
         {
             terminals[i].GetComponent<TerminalControl>().ButtonInteractable(i + 1 < countGarageCars);
         }
-        PlayersGarage.Instance.CreateAllPlayerCars();
+        //PlayersGarage.Instance.CreateAllPlayerCars();
         //foreach(SpawnCars spawnCar in spawnCars) 
         SpawnCar(0);
         /*SpawnCar(1);
@@ -70,7 +70,9 @@ public class LevelControl : MonoBehaviour
             if (numSpawnCar == numTerminal)
             {
                 terminal.SetActive(false);
-                SpawnCar(numSpawnCar);
+                nextSpawnCarPoint.Add(numSpawnCar);
+                Invoke("SpawnCarWrapper", 0.5f);
+                //SpawnCar(numSpawnCar);
             }
         }
     }
@@ -79,7 +81,9 @@ public class LevelControl : MonoBehaviour
     {
         int numSpawnCar = terminal.GetComponent<TerminalControl>().NumberTerminal;
         terminal.SetActive(false);
-        SpawnCar(numSpawnCar);
+        nextSpawnCarPoint.Add(numSpawnCar);
+        Invoke("SpawnCarWrapper", 0.5f);
+        //SpawnCar(numSpawnCar);
     }
 
     public void CarGO(int numSpawnPoint)
@@ -98,6 +102,7 @@ public class LevelControl : MonoBehaviour
                 nextSpawnCarPoint.Add(carControl.NumSpawnPoint);
                 PlayersGarage.Instance.UsingCarTrip(car.GetComponent<CarPassport>().PassportCarID);
                 Invoke("SpawnCarWrapper", 4f);
+                FinishTest();
             }
         }
     }
@@ -161,6 +166,7 @@ public class LevelControl : MonoBehaviour
                 levelInfo.AddCars(1, ui_Control);
                 levelInfo.AddExp(carControl.ExpCar, ui_Control);
                 levelInfo.AddMany(carControl.PriceCar, ui_Control);
+                FinishTest();
             }
             else
             {
@@ -171,6 +177,22 @@ public class LevelControl : MonoBehaviour
                 }
             }
         }
+        /*if (levelInfo.TestFinish())
+        {
+            GameManager.Instance.currentPlayer.sessionGold = levelInfo.Many;
+            GameManager.Instance.currentPlayer.sessionScore = levelInfo.Exp;
+            GameManager.Instance.currentPlayer.LevelExpAndManyUpdate();
+            GameManager.Instance.currentPlayer.LevelComplete();
+            GameManager.Instance.SaveGame();
+            //PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.GarageToCsvString());
+            //PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.PassportsToCsvString());
+            ui_Control.ViewEndLevelPanel();
+        }*/
+        SpawnOrder();
+    }
+
+    private void FinishTest()
+    {
         if (levelInfo.TestFinish())
         {
             GameManager.Instance.currentPlayer.sessionGold = levelInfo.Many;
@@ -182,7 +204,7 @@ public class LevelControl : MonoBehaviour
             //PlayersGarage.Instance.SetGarageCsvString(PlayersGarage.Instance.PassportsToCsvString());
             ui_Control.ViewEndLevelPanel();
         }
-        SpawnOrder();
+
     }
 
     public void AddRewardedGold(int value)

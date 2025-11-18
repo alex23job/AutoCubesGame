@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2463a8eae173e3b469800dbc7c3a63de
+  - enabled: 1
+    path: Assets/Scenes/RemovalScene.unity
+    guid: 69bf7a84ce70d1348a697a639fbf1f25
+  - enabled: 1
     path: Assets/Scenes/LevelScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/GaragScene.unity
+    guid: e00225eb9a503d546bfa82e3bad003df
+  - enabled: 1
+    path: Assets/Scenes/AutoShowScene.unity
+    guid: c663ed703d7ae104681321bfde005ea0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

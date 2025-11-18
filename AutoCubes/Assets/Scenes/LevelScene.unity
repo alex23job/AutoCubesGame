@@ -1271,8 +1271,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ee07272060fb4543a60568c7f7c1a80, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1493,8 +1493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008cb7f729878df41914f8bb159a1171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ru: "\u0412\u044B\u0431\u043E\u0440 \u0440\u0435\u0436\u0438\u043C\u0430 \u0438\u0433\u0440\u044B"
-  en: Game mode selection
+  ru: "\u0420\u0435\u0436\u0438\u043C \u0438\u0433\u0440\u044B \"\u0421\u043A\u043B\u0430\u0434\""
+  en: Warehouse Game mode
 --- !u!114 &644362137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4379,8 +4379,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ee07272060fb4543a60568c7f7c1a80, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5539,7 +5539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2076633852
 RectTransform:
   m_ObjectHideFlags: 0

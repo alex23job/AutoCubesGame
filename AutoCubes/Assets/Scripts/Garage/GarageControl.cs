@@ -79,13 +79,16 @@ public class GarageControl : MonoBehaviour
     private void ViewParams(CarPassport carPassport, CarPassportInfo garagePassport)
     {
         string lang = Language.Instance.CurrentLanguage;
+        string strPrice = (lang == "ru") ? "цена доставки" : "shipping price";
         ViewItemPanel(itemPanels[0], PrefabsPak.Instance.GetItemName(0, lang), $"{PrefabsPak.Instance.GetCarName(carPassport.CarID - 1, lang)}  N% {garagePassport.PassportID}");
         ViewItemPanel(itemPanels[1], PrefabsPak.Instance.GetItemName(1, lang), PrefabsPak.Instance.GetBoxType(carPassport.BoxType, lang));
-        ViewItemPanel(itemPanels[2], PrefabsPak.Instance.GetItemName(2, lang), $"{carPassport.MaxVelocity}");
+        ViewItemPanel(itemPanels[2], PrefabsPak.Instance.GetItemName(2, lang), $"{carPassport.MaxVelocity}  ( {strPrice} : {carPassport.PriceMult:0.0} )");
+        //ViewItemPanel(itemPanels[2], PrefabsPak.Instance.GetItemName(2, lang), $"{carPassport.MaxVelocity}");
         ViewItemPanel(itemPanels[3], PrefabsPak.Instance.GetItemName(3, lang), $"{carPassport.MaxCeilOrders}");
         string strRepairCost = (lang == "ru") ? "цена ремонта" : "repair cost";
         ViewItemPanel(itemPanels[4], PrefabsPak.Instance.GetItemName(4, lang), $"{garagePassport.RemTrips} ({strRepairCost} : {repairCost})");
-        txtExp.text = $"{carPassport.ExpForSale}/{GameManager.Instance.currentPlayer.totalScore}";
+        //txtExp.text = $"{carPassport.ExpForSale}/{GameManager.Instance.currentPlayer.totalScore}";
+        txtExp.text = $"{carPassport.ExpForSale} ( {GameManager.Instance.currentPlayer.totalScore} )";
         txtExp.color = (carPassport.ExpForSale <= GameManager.Instance.currentPlayer.totalScore) ? Color.green : Color.red;
         txtGold.text = $"{carPassport.PriceCar - repairCost}";
         txtGold.color = Color.green;

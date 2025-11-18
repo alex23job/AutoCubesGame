@@ -70,14 +70,17 @@ public class AutoShowControl : MonoBehaviour
     private void ViewParams(CarPassport carPassport)
     {
         string lang = Language.Instance.CurrentLanguage;
+        string strPrice = (lang == "ru") ? "цена доставки" : "shipping price";
         ViewItemPanel(itemPanels[0], PrefabsPak.Instance.GetItemName(0, lang), PrefabsPak.Instance.GetCarName(carPassport.CarID - 1, lang));
         ViewItemPanel(itemPanels[1], PrefabsPak.Instance.GetItemName(1, lang), PrefabsPak.Instance.GetBoxType(carPassport.BoxType, lang));
-        ViewItemPanel(itemPanels[2], PrefabsPak.Instance.GetItemName(2, lang), $"{carPassport.MaxVelocity}");
+        ViewItemPanel(itemPanels[2], PrefabsPak.Instance.GetItemName(2, lang), $"{carPassport.MaxVelocity}  ( {strPrice} : {carPassport.PriceMult:0.0} )");
         ViewItemPanel(itemPanels[3], PrefabsPak.Instance.GetItemName(3, lang), $"{carPassport.MaxCeilOrders}");
         ViewItemPanel(itemPanels[4], PrefabsPak.Instance.GetItemName(4, lang), $"{carPassport.RemainingTrips}");
-        txtExp.text = $"{carPassport.ExpForSale}/{GameManager.Instance.currentPlayer.totalScore}";
+        //txtExp.text = $"{carPassport.ExpForSale}/{GameManager.Instance.currentPlayer.totalScore}";
+        txtExp.text = $"{carPassport.ExpForSale} ( {GameManager.Instance.currentPlayer.totalScore} )";
         txtExp.color = (carPassport.ExpForSale <= GameManager.Instance.currentPlayer.totalScore) ? Color.green : Color.red;
-        txtGold.text = $"{carPassport.PriceCar}/{GameManager.Instance.currentPlayer.totalGold}";
+        //txtGold.text = $"{carPassport.PriceCar}/{GameManager.Instance.currentPlayer.totalGold}";
+        txtGold.text = $"{carPassport.PriceCar} ( {GameManager.Instance.currentPlayer.totalGold} )";
         txtGold.color = (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold) ? Color.green : Color.red;
     }
 
@@ -92,7 +95,7 @@ public class AutoShowControl : MonoBehaviour
     public void OnButtonBuyClick()
     {
         CarPassport carPassport = transform.GetChild(currentViewCar + 1).gameObject.GetComponent<CarPassport>();
-        //GameManager.Instance.currentPlayer.totalGold -= carPassport.PriceCar;
+        GameManager.Instance.currentPlayer.totalGold -= carPassport.PriceCar;
         if (carPassport.PriceCar <= GameManager.Instance.currentPlayer.totalGold)
         {
             btnBuy.interactable = true;

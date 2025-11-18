@@ -22,6 +22,7 @@ public class CarPassport : MonoBehaviour
     private CarInfo carInfo;
     [SerializeField] private int remainingTrips = 100;
 
+    public float PriceMult { get { return carInfo.PriceMult; } }
     public int BoxType { get { return carInfo.Termo; } }
     public int RemainingTrips { get { return remainingTrips; } }
     public int CarID { get { return carInfo.CarID; } } 

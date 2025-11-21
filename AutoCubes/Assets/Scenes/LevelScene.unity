@@ -5539,7 +5539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2076633852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5637,6 +5637,18 @@ PrefabInstance:
     - target: {fileID: 2730591707210785477, guid: bc0ab8e7af0769c4d9bf436aec1543ff, type: 3}
       propertyPath: m_Name
       value: Terminal1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793516591136542851, guid: bc0ab8e7af0769c4d9bf436aec1543ff, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793516591136542851, guid: bc0ab8e7af0769c4d9bf436aec1543ff, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793516591136542851, guid: bc0ab8e7af0769c4d9bf436aec1543ff, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6196903095289254398, guid: bc0ab8e7af0769c4d9bf436aec1543ff, type: 3}
       propertyPath: m_LocalPosition.x

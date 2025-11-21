@@ -11,6 +11,8 @@ public class MainMenuControl : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void GetLeaderboardEntries();
 
+    [SerializeField] private Yandex mayYandex;
+
     [SerializeField] private PeriodicColorChange imgHelpControl;
     [SerializeField] private Image[] foneStoreButtons;
     [SerializeField] private Image[] foneRemovalButtons;
@@ -81,13 +83,16 @@ public class MainMenuControl : MonoBehaviour
     {
         isLoad = true;
         if (GameManager.Instance.currentPlayer.isLoaded)
-        btnPlay.interactable = true;
+        {
+            btnPlay.interactable = true;
+        }
         imgFone.gameObject.SetActive(false);
         imgProgress.gameObject.SetActive(false);
         foneAvatar.gameObject.SetActive(true);
         //riAvatar.gameObject.SetActive(true);
         txtName.gameObject.SetActive(true);
         txtRecord.gameObject.SetActive(true);
+        if (mayYandex != null) mayYandex.GameStart();
     }
 
     public void ViewSelectGamePanel()

@@ -25,10 +25,13 @@ public class RemovalControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        numBox = GameManager.Instance.currentPlayer.numBoxRemoval;
-        totalSecond = GameManager.Instance.currentPlayer.countSecondRemoval;
-        GameManager.Instance.currentPlayer.currentScore = 0;
-        //numBox = 3;
+        if (GameManager.Instance != null)
+        {
+            numBox = GameManager.Instance.currentPlayer.numBoxRemoval;
+            totalSecond = GameManager.Instance.currentPlayer.countSecondRemoval;
+            GameManager.Instance.currentPlayer.currentScore = 0;
+        }
+        else numBox = 3;
         GameObject box = Instantiate(prefabBoxes[numBox], new Vector3(0, 0f, 0.7f), Quaternion.identity);
         removalBox = box.GetComponent<RemovalBox>();
         removalBox.SetRemovalControl(gameObject.GetComponent<RemovalControl>());
